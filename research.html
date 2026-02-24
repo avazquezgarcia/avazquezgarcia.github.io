@@ -2,30 +2,118 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Research – Alba Vázquez García</title>
+  <style>
+    /* --- Base --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: #222;
+      background: #fff;
+    }
+
+    /* --- Navigation --- */
+    nav {
+      background: #1a1a2e;
+      padding: 16px 0;
+      text-align: center;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 24px;
+      font-family: 'Arial', sans-serif;
+      font-size: 15px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    nav a:hover { color: #fff; }
+
+    /* --- Main container --- */
+    .container {
+      max-width: 860px;
+      margin: 60px auto;
+      padding: 0 30px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: normal;
+      color: #1a1a2e;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: normal;
+      color: #1a1a2e;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 8px;
+      margin-bottom: 24px;
+    }
+
+    /* --- Paper entry --- */
+    .paper {
+      margin-bottom: 36px;
+    }
+
+    .paper-title {
+      font-size: 17px;
+      font-weight: bold;
+      color: #1a1a2e;
+      margin-bottom: 4px;
+    }
+
+    .paper-status {
+      font-style: italic;
+      color: #888;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .paper p {
+      color: #333;
+    }
+
+    /* --- Links --- */
+    a { color: #1a5276; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
 
   <nav>
-    <a href="index.html">Home</a> |
-    <a href="research.html">Research</a> |
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
     <a href="teaching.html">Teaching</a>
   </nav>
 
-  <h1>Research</h1>
+  <div class="container">
 
-  <h2>Work in Progress</h2>
+    <h1>Research</h1>
 
-  <p>
-    <strong>Payroll Tax Incidence at the Individual and Firm Level: Evidence from Spain</strong><br>
-    [Draft available soon]
-  </p>
-  <p>
-    This paper examines the incidence of employer-side payroll taxes through a reform in Spain that 
-    introduced, and later repealed, a tax reduction for older workers on open-ended contracts and with 
-    certain seniority at the firm. Using administrative Social Security data and matched employer-employee 
-    records, I apply dynamic difference-in-differences models at both the individual and firm levels.
-  </p>
+    <h2>Work in Progress</h2>
+
+    <div class="paper">
+      <div class="paper-title">Payroll Tax Incidence at the Individual and Firm Level: Evidence from Spain</div>
+      <div class="paper-status">Draft available soon</div>
+      <p>
+        This paper examines the incidence of employer-side payroll taxes through a reform in Spain that 
+        introduced, and later repealed, a tax reduction for older workers on open-ended contracts and with 
+        certain seniority at the firm. Using administrative Social Security data and matched employer-employee 
+        records, I apply dynamic difference-in-differences models at both the individual and firm levels.
+      </p>
+    </div>
+
+  </div>
 
 </body>
 </html>
