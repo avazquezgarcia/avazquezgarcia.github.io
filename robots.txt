@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://albavazquezgarcia.github.io/sitemap.xml
