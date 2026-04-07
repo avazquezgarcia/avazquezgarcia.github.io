@@ -1,371 +1,312 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Cambios Fiscales en España (2015–2020) | Alba Vázquez García</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --bg: #FAFAF8;
-    --surface: #FFFFFF;
-    --surface-alt: #F4F3EF;
-    --border: #E2E0D8;
-    --border-strong: #C8C5BA;
-    --text: #1A1A18;
-    --text-secondary: #6B6960;
-    --text-muted: #9C9889;
-    --accent-irpf: #B44D2C;
-    --accent-irpf-bg: #FDF0EB;
-    --accent-ip: #2C6B8E;
-    --accent-ip-bg: #EBF4FA;
-    --accent-isd: #5E4B8B;
-    --accent-isd-bg: #F2EFF8;
-    --accent-is: #2E7D5B;
-    --accent-is-bg: #ECF7F1;
-    --accent-nacional: #8B6914;
-    --accent-nacional-bg: #FBF6E8;
-    --accent-ccaa: #1A6B6B;
-    --accent-ccaa-bg: #E8F5F5;
-    --shadow-sm: 0 1px 2px rgba(26,26,24,0.06);
-    --shadow-md: 0 4px 12px rgba(26,26,24,0.08);
-    --shadow-lg: 0 8px 24px rgba(26,26,24,0.1);
-    --radius: 8px;
-    --radius-lg: 12px;
-    --font-display: 'DM Serif Display', Georgia, serif;
-    --font-body: 'DM Sans', -apple-system, sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tax Changes Spain – Alba Vazquez García</title>
+  <style>
+    /* --- Base --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: #222;
+      background: #fff;
+    }
 
-  body {
-    font-family: var(--font-body);
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+    /* --- Navigation --- */
+    nav {
+      background: #4d0000;
+      padding: 16px 30px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 40px;
+    }
 
-  .page-header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 2rem 0 1.75rem;
-  }
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      font-weight: bold;
+    }
 
-  .container {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
+    nav a:hover { color: #fff; }
 
-  .header-top {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
+    /* --- Main container --- */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
 
-  .header-top a {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
+    .page-intro {
+      padding: 60px 30px 0;
+      max-width: 860px;
+      margin: 0 auto;
+    }
 
-  .header-top a:hover { color: var(--text-secondary); }
+    h1 {
+      font-size: 28px;
+      font-weight: normal;
+      color: #4d0000;
+      margin-bottom: 10px;
+    }
 
-  h1 {
-    font-family: var(--font-display);
-    font-size: 2.2rem;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-    margin-bottom: 0.35rem;
-  }
+    .subtitle {
+      font-style: italic;
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 32px;
+    }
 
-  .subtitle {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    max-width: 640px;
-  }
+    /* --- Links --- */
+    a { color: #4d0000; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-  /* Filters */
-  .filters-section {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+    /* --- Filters --- */
+    .filters-section {
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-  .filter-row {
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
+    .filter-row {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 30px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
 
-  .filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-  .filter-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-  }
+    .filter-label {
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #888;
+    }
 
-  .filter-chips {
-    display: flex;
-    gap: 0.35rem;
-    flex-wrap: wrap;
-  }
+    .filter-chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
 
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.3rem 0.7rem;
-    border-radius: 100px;
-    font-size: 0.78rem;
-    font-weight: 500;
-    cursor: pointer;
-    border: 1.5px solid var(--border);
-    background: var(--surface);
-    color: var(--text-secondary);
-    transition: all 0.15s ease;
-    user-select: none;
-    white-space: nowrap;
-  }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 12px;
+      border-radius: 3px;
+      font-size: 13px;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      background: #fff;
+      color: #555;
+      font-family: Arial, sans-serif;
+      transition: border-color 0.1s, color 0.1s;
+      user-select: none;
+      white-space: nowrap;
+    }
 
-  .chip:hover { border-color: var(--border-strong); color: var(--text); }
-  .chip.active { border-color: var(--text); background: var(--text); color: var(--surface); }
+    .chip:hover { border-color: #aaa; color: #222; }
+    .chip.active { border-color: #4d0000; background: #4d0000; color: #fff; }
 
-  .chip-irpf.active { background: var(--accent-irpf); border-color: var(--accent-irpf); color: #fff; }
-  .chip-ip.active { background: var(--accent-ip); border-color: var(--accent-ip); color: #fff; }
-  .chip-isd.active { background: var(--accent-isd); border-color: var(--accent-isd); color: #fff; }
-  .chip-is.active { background: var(--accent-is); border-color: var(--accent-is); color: #fff; }
+    .chip-irpf.active { background: #4d0000; border-color: #4d0000; }
+    .chip-ip.active   { background: #003d6e; border-color: #003d6e; }
+    .chip-isd.active  { background: #3d2060; border-color: #3d2060; }
+    .chip-is.active   { background: #1a5c3a; border-color: #1a5c3a; }
 
-  /* Search */
-  .search-box {
-    flex: 1;
-    min-width: 200px;
-    max-width: 320px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
+    /* --- Search --- */
+    .search-box {
+      flex: 1;
+      min-width: 200px;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-  .search-input {
-    padding: 0.4rem 0.75rem;
-    border-radius: var(--radius);
-    border: 1.5px solid var(--border);
-    font-family: var(--font-body);
-    font-size: 0.82rem;
-    background: var(--surface);
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.15s;
-  }
+    .search-input {
+      padding: 4px 10px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: #222;
+      outline: none;
+    }
 
-  .search-input:focus { border-color: var(--text); }
-  .search-input::placeholder { color: var(--text-muted); }
+    .search-input:focus { border-color: #4d0000; }
+    .search-input::placeholder { color: #aaa; }
 
-  /* Results */
-  .results-section { padding: 1.5rem 0 3rem; }
+    /* --- Results --- */
+    .results-section {
+      max-width: 860px;
+      margin: 32px auto 60px;
+      padding: 0 30px;
+    }
 
-  .results-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
+    .results-meta { margin-bottom: 16px; }
 
-  .results-count {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    font-weight: 500;
-  }
+    .results-count { font-size: 14px; color: #888; }
+    .results-count strong { color: #222; }
 
-  .results-count strong { color: var(--text); }
+    /* --- Cards --- */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+    }
 
-  /* Cards */
-  .card-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
+    .card {
+      padding: 20px 0;
+      border-bottom: 1px solid #ddd;
+    }
 
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.15rem 1.35rem;
-    transition: box-shadow 0.2s, border-color 0.2s;
-    cursor: default;
-  }
+    .card-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
 
-  .card:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--border-strong);
-  }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 2px;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
 
-  .card-top {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-    flex-wrap: wrap;
-  }
+    .badge-irpf { background: #fdf0eb; color: #7a2e14; }
+    .badge-ip   { background: #ebf4fa; color: #1e4f6b; }
+    .badge-isd  { background: #f2eff8; color: #4a3a6b; }
+    .badge-is   { background: #ecf7f1; color: #1e5c3a; }
 
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.15rem 0.55rem;
-    border-radius: 100px;
-    font-size: 0.68rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
+    .badge-scope { font-size: 11px; font-weight: normal; }
 
-  .badge-irpf { background: var(--accent-irpf-bg); color: var(--accent-irpf); }
-  .badge-ip { background: var(--accent-ip-bg); color: var(--accent-ip); }
-  .badge-isd { background: var(--accent-isd-bg); color: var(--accent-isd); }
-  .badge-is { background: var(--accent-is-bg); color: var(--accent-is); }
+    .badge-nacional { background: #fbf6e8; color: #6b520e; }
+    .badge-autonómico { background: #e8f5f5; color: #145252; }
 
-  .badge-scope {
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-  }
+    .card-year {
+      font-size: 13px;
+      color: #888;
+      margin-left: auto;
+    }
 
-  .badge-nacional { background: var(--accent-nacional-bg); color: var(--accent-nacional); }
-  .badge-ccaa { background: var(--accent-ccaa-bg); color: var(--accent-ccaa); }
+    .card-title {
+      font-size: 17px;
+      font-weight: bold;
+      color: #4d0000;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
 
-  .card-year {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    font-weight: 500;
-    margin-left: auto;
-  }
+    .card-description {
+      font-size: 15px;
+      color: #333;
+      line-height: 1.6;
+    }
 
-  .card-title {
-    font-family: var(--font-display);
-    font-size: 1.08rem;
-    line-height: 1.35;
-    margin-bottom: 0.4rem;
-  }
+    .card-meta {
+      margin-top: 10px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-  .card-description {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-  }
+    .meta-item {
+      font-size: 13px;
+      font-style: italic;
+      color: #888;
+    }
 
-  .card-meta {
-    margin-top: 0.65rem;
-    padding-top: 0.55rem;
-    border-top: 1px solid var(--surface-alt);
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
+    .meta-item strong {
+      font-weight: normal;
+      font-style: normal;
+      color: #555;
+    }
 
-  .meta-item {
-    font-size: 0.72rem;
-    color: var(--text-muted);
-  }
+    /* --- Empty state --- */
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #888;
+      font-size: 15px;
+    }
 
-  .meta-item strong {
-    color: var(--text-secondary);
-    font-weight: 600;
-  }
+    /* --- Footer --- */
+    .page-footer {
+      border-top: 1px solid #ddd;
+      padding: 24px 30px;
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto 40px;
+    }
 
-  /* Empty state */
-  .empty-state {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: var(--text-muted);
-  }
+    .page-footer p {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.6;
+    }
 
-  .empty-state p { font-size: 0.9rem; }
+    .page-footer a { color: #4d0000; text-decoration: underline; }
 
-  /* Footer */
-  .page-footer {
-    border-top: 1px solid var(--border);
-    padding: 1.5rem 0;
-    text-align: center;
-  }
-
-  .page-footer p {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
-
-  .page-footer a {
-    color: var(--text-secondary);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  /* Responsive */
-  @media (max-width: 640px) {
-    h1 { font-size: 1.6rem; }
-    .filter-row { gap: 1rem; }
-    .search-box { max-width: 100%; }
-    .card { padding: 1rem; }
-    .card-year { margin-left: 0; }
-  }
-</style>
+    /* --- Responsive --- */
+    @media (max-width: 600px) {
+      h1 { font-size: 22px; }
+      .filter-row { gap: 16px; }
+      .search-box { max-width: 100%; }
+      .card-year { margin-left: 0; }
+    }
+  </style>
 </head>
 <body>
 
-<header class="page-header">
-  <div class="container">
-    <div class="header-top">
-      <a href="https://avazquezgarcia.github.io/">← Volver al inicio</a>
-    </div>
-    <h1>Cambios Fiscales en España</h1>
-    <p class="subtitle">Base de datos de reformas tributarias a nivel nacional y autonómico (2015–2020). IRPF, Impuesto sobre el Patrimonio, Impuesto sobre Sucesiones y Donaciones, e Impuesto sobre Sociedades.</p>
-  </div>
-</header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="tax_changes.html">Tax changes Spain</a>
+  </nav>
 
-<section class="filters-section">
-  <div class="container">
+  <div class="page-intro">
+    <h1>Tax Law Changes in Spain</h1>
+    <p class="subtitle">Database of national and regional tax reforms (2015–2020). Personal Income Tax (IRPF), Wealth Tax (IP), Inheritance &amp; Gift Tax (ISD), and Corporate Income Tax (IS). Entries are in Spanish — the language of the source legislation.</p>
+  </div>
+
+  <section class="filters-section">
     <div class="filter-row" id="filters"></div>
-  </div>
-</section>
+  </section>
 
-<section class="results-section">
-  <div class="container">
+  <div class="results-section">
     <div class="results-meta">
       <span class="results-count" id="results-count"></span>
     </div>
     <div class="card-grid" id="card-grid"></div>
   </div>
-</section>
 
-<footer class="page-footer">
-  <div class="container">
-    <p>Fuentes: <a href="https://www.hacienda.gob.es/es-ES/Areas%20Tematicas/Financiacion%20Autonomica/Paginas/libro%20electronico%20tributacion.aspx" target="_blank">Tributación Autonómica (Min. Hacienda)</a>, Manuales AEAT, BOE.<br>
-    Compilado por <a href="https://avazquezgarcia.github.io/" target="_blank">Alba Vázquez García</a> · Última actualización: abril 2026 · Datos en proceso de ampliación.</p>
-  </div>
-</footer>
+  <footer class="page-footer">
+    <p>Sources: <a href="https://www.hacienda.gob.es/es-ES/Areas%20Tematicas/Financiacion%20Autonomica/Paginas/libro%20electronico%20tributacion.aspx" target="_blank">Tributación Autonómica (Min. Hacienda)</a>, Manuales AEAT, BOE.<br>
+    Compiled by <a href="https://avazquezgarcia.github.io/" target="_blank">Alba Vázquez García</a> · Last updated: April 2026 · Data being expanded.</p>
+  </footer>
 
 <script>
 // ============================================================
@@ -1430,7 +1371,7 @@ function buildFilters() {
 
   // Year filter
   const yearGroup = el("div", "filter-group");
-  yearGroup.appendChild(labelEl("Año"));
+  yearGroup.appendChild(labelEl("Year"));
   const yearChips = el("div", "filter-chips");
   YEARS.forEach(y => {
     const c = chip(String(y), activeYears.has(y), "");
@@ -1442,7 +1383,7 @@ function buildFilters() {
 
   // Tax filter
   const taxGroup = el("div", "filter-group");
-  taxGroup.appendChild(labelEl("Impuesto"));
+  taxGroup.appendChild(labelEl("Tax"));
   const taxChips = el("div", "filter-chips");
   TAXES.forEach(t => {
     const c = chip(t, activeTaxes.has(t), "chip-" + t.toLowerCase());
@@ -1454,7 +1395,7 @@ function buildFilters() {
 
   // Scope filter
   const scopeGroup = el("div", "filter-group");
-  scopeGroup.appendChild(labelEl("Ámbito"));
+  scopeGroup.appendChild(labelEl("Scope"));
   const scopeChips = el("div", "filter-chips");
   SCOPES.forEach(s => {
     const c = chip(s, activeScopes.has(s), "");
@@ -1466,11 +1407,11 @@ function buildFilters() {
 
   // Search
   const searchGroup = el("div", "search-box");
-  searchGroup.appendChild(labelEl("Buscar"));
+  searchGroup.appendChild(labelEl("Search"));
   const input = document.createElement("input");
   input.className = "search-input";
   input.type = "text";
-  input.placeholder = "p.ej. bonificación, tarifa, ERD…";
+  input.placeholder = "e.g. bonificación, tarifa, ERD…";
   input.value = searchQuery;
   input.oninput = (e) => { searchQuery = e.target.value; renderCards(); };
   searchGroup.appendChild(input);
@@ -1518,10 +1459,10 @@ function renderCards() {
   const grid = document.getElementById("card-grid");
   const countEl = document.getElementById("results-count");
   const items = getFiltered();
-  countEl.innerHTML = `<strong>${items.length}</strong> medida${items.length !== 1 ? "s" : ""} encontrada${items.length !== 1 ? "s" : ""}`;
+  countEl.innerHTML = `<strong>${items.length}</strong> measure${items.length !== 1 ? "s" : ""} found`;
 
   if (items.length === 0) {
-    grid.innerHTML = `<div class="empty-state"><p>No se encontraron medidas con estos filtros.</p></div>`;
+    grid.innerHTML = `<div class="empty-state"><p>No measures found with these filters.</p></div>`;
     return;
   }
 
@@ -1556,12 +1497,12 @@ function renderCards() {
       const meta = el("div", "card-meta");
       if (d.norma && d.norma !== "—") {
         const normaEl = el("span", "meta-item");
-        normaEl.innerHTML = `<strong>Norma:</strong> ${d.norma}`;
+        normaEl.innerHTML = `<strong>Law:</strong> ${d.norma}`;
         meta.appendChild(normaEl);
       }
       if (d.component) {
         const compEl = el("span", "meta-item");
-        compEl.innerHTML = `<strong>Componente:</strong> ${d.component}`;
+        compEl.innerHTML = `<strong>Component:</strong> ${d.component}`;
         meta.appendChild(compEl);
       }
       card.appendChild(meta);
