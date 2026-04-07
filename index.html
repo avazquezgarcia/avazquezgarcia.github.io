@@ -129,11 +129,12 @@
     .links a:hover { background: #6d0000; }
 
     /* --- Responsive --- */
-    @media (max-width: 600px) {
-      .profile { flex-direction: column; }
-      .profile-image img { width: 100%; height: auto; }
-      .profile-text { width: 100%; }
-    }
+   @media (max-width: 600px) {
+  .profile { flex-direction: column; }
+  .profile-image { width: 100%; }   /* ← add this */
+  .profile-image img { width: 100%; height: auto; }
+  .profile-text { width: 100%; }
+}
   </style>
 </head>
 <body>
