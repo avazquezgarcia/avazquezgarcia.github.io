@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cambios Fiscales en España (2015–2020) | Alba Vázquez García</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --surface: #FFFFFF;
+    --surface-alt: #F4F3EF;
+    --border: #E2E0D8;
+    --border-strong: #C8C5BA;
+    --text: #1A1A18;
+    --text-secondary: #6B6960;
+    --text-muted: #9C9889;
+    --accent-irpf: #B44D2C;
+    --accent-irpf-bg: #FDF0EB;
+    --accent-ip: #2C6B8E;
+    --accent-ip-bg: #EBF4FA;
+    --accent-isd: #5E4B8B;
+    --accent-isd-bg: #F2EFF8;
+    --accent-is: #2E7D5B;
+    --accent-is-bg: #ECF7F1;
+    --accent-nacional: #8B6914;
+    --accent-nacional-bg: #FBF6E8;
+    --accent-ccaa: #1A6B6B;
+    --accent-ccaa-bg: #E8F5F5;
+    --shadow-sm: 0 1px 2px rgba(26,26,24,0.06);
+    --shadow-md: 0 4px 12px rgba(26,26,24,0.08);
+    --shadow-lg: 0 8px 24px rgba(26,26,24,0.1);
+    --radius: 8px;
+    --radius-lg: 12px;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 0 1.75rem;
+  }
+
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .header-top a {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .header-top a:hover { color: var(--text-secondary); }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 0.35rem;
+  }
+
+  .subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-width: 640px;
+  }
+
+  /* Filters */
+  .filters-section {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .filter-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .filter-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+
+  .filter-chips {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    color: var(--text-secondary);
+    transition: all 0.15s ease;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .chip:hover { border-color: var(--border-strong); color: var(--text); }
+  .chip.active { border-color: var(--text); background: var(--text); color: var(--surface); }
+
+  .chip-irpf.active { background: var(--accent-irpf); border-color: var(--accent-irpf); color: #fff; }
+  .chip-ip.active { background: var(--accent-ip); border-color: var(--accent-ip); color: #fff; }
+  .chip-isd.active { background: var(--accent-isd); border-color: var(--accent-isd); color: #fff; }
+  .chip-is.active { background: var(--accent-is); border-color: var(--accent-is); color: #fff; }
+
+  /* Search */
+  .search-box {
+    flex: 1;
+    min-width: 200px;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .search-input {
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--border);
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .search-input:focus { border-color: var(--text); }
+  .search-input::placeholder { color: var(--text-muted); }
+
+  /* Results */
+  .results-section { padding: 1.5rem 0 3rem; }
+
+  .results-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .results-count {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .results-count strong { color: var(--text); }
+
+  /* Cards */
+  .card-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.15rem 1.35rem;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-strong);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.55rem;
+    border-radius: 100px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-irpf { background: var(--accent-irpf-bg); color: var(--accent-irpf); }
+  .badge-ip { background: var(--accent-ip-bg); color: var(--accent-ip); }
+  .badge-isd { background: var(--accent-isd-bg); color: var(--accent-isd); }
+  .badge-is { background: var(--accent-is-bg); color: var(--accent-is); }
+
+  .badge-scope {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .badge-nacional { background: var(--accent-nacional-bg); color: var(--accent-nacional); }
+  .badge-ccaa { background: var(--accent-ccaa-bg); color: var(--accent-ccaa); }
+
+  .card-year {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-left: auto;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 1.08rem;
+    line-height: 1.35;
+    margin-bottom: 0.4rem;
+  }
+
+  .card-description {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .card-meta {
+    margin-top: 0.65rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid var(--surface-alt);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  .meta-item strong {
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+  }
+
+  .empty-state p { font-size: 0.9rem; }
+
+  /* Footer */
+  .page-footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 0;
+    text-align: center;
+  }
+
+  .page-footer p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .page-footer a {
+    color: var(--text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    h1 { font-size: 1.6rem; }
+    .filter-row { gap: 1rem; }
+    .search-box { max-width: 100%; }
+    .card { padding: 1rem; }
+    .card-year { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="container">
+    <div class="header-top">
+      <a href="https://avazquezgarcia.github.io/">← Volver al inicio</a>
+    </div>
+    <h1>Cambios Fiscales en España</h1>
+    <p class="subtitle">Base de datos de reformas tributarias a nivel nacional y autonómico (2015–2020). IRPF, Impuesto sobre el Patrimonio, Impuesto sobre Sucesiones y Donaciones, e Impuesto sobre Sociedades.</p>
+  </div>
+</header>
+
+<section class="filters-section">
+  <div class="container">
+    <div class="filter-row" id="filters"></div>
+  </div>
+</section>
+
+<section class="results-section">
+  <div class="container">
+    <div class="results-meta">
+      <span class="results-count" id="results-count"></span>
+    </div>
+    <div class="card-grid" id="card-grid"></div>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <div class="container">
+    <p>Fuentes: <a href="https://www.hacienda.gob.es/es-ES/Areas%20Tematicas/Financiacion%20Autonomica/Paginas/libro%20electronico%20tributacion.aspx" target="_blank">Tributación Autonómica (Min. Hacienda)</a>, Manuales AEAT, BOE.<br>
+    Compilado por <a href="https://avazquezgarcia.github.io/" target="_blank">Alba Vázquez García</a> · Última actualización: abril 2026 · Datos en proceso de ampliación.</p>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// DATA — Spanish Tax Changes 2015–2020
+// Each entry: { year, tax, scope, region, title, description, norma, component }
+// tax: IRPF | IP | ISD | IS
+// scope: Nacional | Autonómico
+// ============================================================
+const DATA = [
+  // ===================== 2015 — IRPF (from Manual Renta 2015 AEAT) =====================
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Nueva tarifa estatal: de 7 a 5 tramos, supresión gravamen complementario",
+    description: "Se suprime el gravamen complementario para reducir el déficit público. Nueva escala estatal con 5 tramos: tipo mínimo 10% (BI hasta 12.450€), máximo estatal 23,5% (BI >60.000€). Tipo marginal combinado máximo pasa del 52% al 45% (estatal+autonómico supletoria). Tipo mínimo combinado del 20% (estatal 10% + autonómico 10%).",
+    norma: "Ley 26/2014, de 27 de noviembre",
+    component: "Tarifa general estatal"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Nueva tarifa del ahorro: 3 tramos progresivos",
+    description: "Tarifa del ahorro con tres tramos: 20% (hasta 6.000€), 22% (6.000–50.000€) y 24% (más de 50.000€). En 2016 bajará a 19%-21%-23%. Se suprime la exención de 1.500€ anuales para dividendos.",
+    norma: "Ley 26/2014",
+    component: "Tarifa del ahorro, exención dividendos"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Nuevas deducciones familiares en cuota diferencial",
+    description: "Cuatro nuevas deducciones que minoran la cuota diferencial (pueden generar devolución): por descendiente con discapacidad, por ascendiente con discapacidad, por familia numerosa, y por ascendiente separado con dos hijos (1.200€/año cada una, anticipables 100€/mes). Posibilidad de ceder el derecho a la deducción a otro contribuyente.",
+    norma: "Ley 26/2014",
+    component: "Deducciones familiares cuota diferencial"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Exenciones: nuevos supuestos y supresión de la exención de dividendos",
+    description: "Nuevas exenciones: becas de fundaciones bancarias (Ley 26/2013), Planes de Ahorro a Largo Plazo (PALP, 5 años sin disposición), rentas mínimas de inserción autonómicas (hasta 1,5×IPREM), ayudas a víctimas de violencia de género, rentas del deudor concursal por quitas/daciones. Exención para ganancias de mayores de 65 años reinvertidas en renta vitalicia (máx. 240.000€). Se SUPRIME la exención de 1.500€ para dividendos.",
+    norma: "Ley 26/2014",
+    component: "Exenciones"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Rendimientos del trabajo en especie: nuevas reglas de valoración",
+    description: "Reorganización del art. 42 LIRPF: delimitación clara de supuestos de no sujeción y exención. Nuevas reglas de valoración: vivienda al 5% del valor catastral (si revisado en últimos 10 años), vehículos eficientes con reducción del 30%. Dejan de ser gastos de formación los de nuevas tecnologías para uso fuera del trabajo.",
+    norma: "Ley 26/2014",
+    component: "Rendimientos del trabajo en especie"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Reducción por irregularidad: del 40% al 30%, con nuevas condiciones",
+    description: "Para rendimientos con período de generación >2 años o notoriamente irregulares, la reducción pasa del 40% al 30%. Nuevas condiciones: imputación a único período impositivo; que no se haya aplicado la reducción en los 5 ejercicios anteriores (salvo extinción relación laboral). Límite máximo de 300.000€. Desaparece la posibilidad de aplicar reducción a rentas fraccionadas (régimen transitorio para las anteriores a 2015).",
+    norma: "Ley 26/2014",
+    component: "Reducción por irregularidad (arts. 18, 23, 26, 32 LIRPF)"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Nuevos 'otros gastos deducibles' del trabajo: 2.000€ fijos + movilidad + discapacidad",
+    description: "Sustitución de la antigua reducción por obtención de rendimientos del trabajo por nuevos gastos deducibles: 2.000€ fijos anuales; +2.000€ adicionales por movilidad geográfica (desempleados que trasladen residencia); +3.500€/7.750€ para trabajadores activos con discapacidad. Límite: no pueden superar el rendimiento íntegro menos otros gastos.",
+    norma: "Ley 26/2014",
+    component: "Gastos deducibles del trabajo"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Reducción por rendimientos del trabajo: solo para rentas bajas",
+    description: "La reducción por rendimientos del trabajo se aplica solo a contribuyentes con rendimientos netos del trabajo <14.450€ que no tengan rentas distintas del trabajo >6.500€. Se suprime la deducción en cuota del art. 80 bis (deducción por obtención de rendimientos del trabajo), integrada en esta reducción.",
+    norma: "Ley 26/2014",
+    component: "Reducción rendimientos del trabajo (art. 20 LIRPF)"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Capital inmobiliario: desaparece requisito de local, reducción arrendamiento solo 60%",
+    description: "Desaparece el requisito de contar con local exclusivo para que el arrendamiento de inmuebles sea actividad económica. Desaparece la reducción del 100% para arrendatarios jóvenes (18-30 años). Se mantiene solo la reducción del 60% sobre rendimiento neto positivo. Imputación inmobiliaria: 1,1% si valor catastral revisado en últimos 10 años.",
+    norma: "Ley 26/2014",
+    component: "Rendimientos capital inmobiliario"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Ganancias patrimoniales: supresión coeficientes de actualización, límite a abatimiento",
+    description: "Se suprimen los coeficientes de actualización del valor de adquisición en transmisión de inmuebles. Los coeficientes de abatimiento (bienes pre-1994) se mantienen pero con límite conjunto de 400.000€ de valor de transmisión. Todas las ganancias/pérdidas de transmisiones vuelven a la base del ahorro (en 2013-14, las de ≤1 año iban a la general).",
+    norma: "Ley 26/2014",
+    component: "Ganancias patrimoniales, coeficientes"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Exit tax: nuevo gravamen por cambio de residencia",
+    description: "Nuevo régimen de tributación de ganancias patrimoniales latentes en acciones/participaciones cuando el contribuyente pierda su residencia fiscal en España. Requisito: haber sido residente 10 de los últimos 15 años. Aplica si valor de mercado >4M€, o si participación >25% y valor >1M€. Reglas especiales para desplazamientos a UE/EEE.",
+    norma: "Ley 26/2014 (art. 95 bis LIRPF)",
+    component: "Exit tax, ganancias patrimoniales"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Integración y compensación: nueva interconexión ahorro, elevación del 10% al 25%",
+    description: "El saldo negativo de pérdidas de la BI general (no de transmisiones) se puede compensar con el 25% (antes 10%) del saldo positivo de rendimientos e imputaciones. Nueva compensación cruzada en la base del ahorro: el saldo negativo de rendimientos del capital mobiliario se compensa con el 10% del saldo positivo de ganancias patrimoniales, y viceversa.",
+    norma: "Ley 26/2014",
+    component: "Integración y compensación de rentas"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Aportaciones a planes de pensiones: nuevo límite de 8.000€",
+    description: "Límite máximo conjunto de reducción por aportaciones a sistemas de previsión social: la menor de 30% de rendimientos netos del trabajo y actividades, u 8.000€ anuales (antes 10.000€/12.500€ para >50 años). Se elimina el porcentaje elevado del 50% para >50 años. Aportaciones al cónyuge: hasta 2.500€ (antes 2.000€).",
+    norma: "Ley 26/2014",
+    component: "Reducciones planes de pensiones"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Mínimos personales y familiares: elevación general de cuantías",
+    description: "Incremento del mínimo personal (5.550€) y adicionales por edad (>65: +1.150€, >75: +1.400€). Incremento del mínimo por descendientes (1º: 2.400€, 2º: 2.700€, 3º: 4.000€, 4º+: 4.500€) y ascendientes. Incremento de mínimos por discapacidad. Nueva regla: asimilación de dependencia económica a convivencia para descendientes.",
+    norma: "Ley 26/2014",
+    component: "Mínimo personal y familiar"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Supresión de deducciones: alquiler vivienda, cuenta ahorro-empresa, art. 80 bis",
+    description: "Se suprimen: deducción por alquiler de vivienda habitual (régimen transitorio para contratos anteriores a 2015), deducción por cuenta ahorro-empresa, deducción por obtención de rendimientos del trabajo (art. 80 bis). Se mantiene régimen transitorio de deducción por inversión en vivienda habitual (adquisiciones pre-2013).",
+    norma: "Ley 26/2014",
+    component: "Deducciones suprimidas"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Donaciones: nueva escala progresiva con tipo incrementado por reiteración",
+    description: "Nueva escala de deducción para donativos a entidades de la Ley 49/2002: tipo base más tipo incrementado por reiteración (donaciones a la misma entidad en los 2 años anteriores). Los porcentajes se elevan 5pp para actividades prioritarias de mecenazgo. Nueva deducción del 20% por cuotas a partidos políticos (antes reducción en base).",
+    norma: "Ley 26/2014",
+    component: "Deducciones por donativos"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Seguros: reducción antigüedad PIAS a 5 años, nuevo PALP/SIALP/CIALP",
+    description: "Para PIAS (Planes Individuales de Ahorro Sistemático), el requisito de antigüedad para exención de la renta vitalicia baja de 10 a 5 años. Nuevos instrumentos: Plan de Ahorro a Largo Plazo (PALP), instrumentado como SIALP o CIALP, con exención de rendimientos positivos si permanencia ≥5 años. Límite de aportación: 5.000€/año.",
+    norma: "Ley 26/2014",
+    component: "Seguros, PIAS, PALP"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Actividades económicas: nueva tabla de amortización, cambios en gastos deducibles",
+    description: "Simplificación de la tabla de amortización (art. 12.1.a LIS). Límite del 1% de cifra de negocios para gastos de atenciones a clientes. No deducibilidad general de deterioros de inmovilizado material e inversiones inmobiliarias. Libertad de amortización para bienes <300€ (hasta 25.000€/año). En EDS, provisiones limitadas a 2.000€.",
+    norma: "Ley 26/2014, Ley 27/2014",
+    component: "Actividades económicas, gastos deducibles"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Régimen de impatriados (Ley Beckham): modificaciones",
+    description: "Se excluye a deportistas profesionales del régimen especial de trabajadores desplazados (régimen transitorio para los que ya lo aplicaban). Se incluye a administradores de entidades sin participación vinculada. Se elimina el límite de 600.000€ de retribuciones. Nueva tarifa diferenciada para rentas de transmisiones, intereses y dividendos.",
+    norma: "Ley 26/2014 (art. 93 LIRPF)",
+    component: "Régimen especial impatriados"
+  },
+
+  // ===================== 2015 — IS (from Manual Sociedades 2015 + Manual Renta 2015) =====================
+  {
+    year: 2015, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "Reforma integral del IS (Ley 27/2014): tipo, reserva de capitalización, BINs",
+    description: "Nuevo tipo general del 28% (baja al 25% en 2016). Tipo para entidades de nueva creación: 15% (dos primeros ejercicios con BI positiva). Reserva de capitalización (art. 25 LIS): reducción del 10% del incremento de fondos propios, en sustitución de la deducción por reinversión y por inversión de beneficios. Limitación de la compensación de BINs al 70% de la BI previa.",
+    norma: "Ley 27/2014, de 27 de noviembre",
+    component: "Tipo general, reserva de capitalización, BINs"
+  },
+  {
+    year: 2015, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2015: concepto de actividad económica, entidad patrimonial, y sociedades civiles",
+    description: "Nuevo concepto de actividad económica (art. 5 LIS), similar al del IRPF. Para arrendamiento de inmuebles se exige al menos una persona empleada a jornada completa. Nueva definición de entidad patrimonial: más del 50% del activo en valores o no afecto a actividad económica. Las sociedades civiles con objeto mercantil pasan a ser contribuyentes del IS (vigencia 2016, con régimen transitorio).",
+    norma: "Ley 27/2014 (arts. 5, 7 LIS)",
+    component: "Concepto actividad económica, entidad patrimonial"
+  },
+  {
+    year: 2015, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2015: no deducibilidad de deterioros de activos (excepto existencias y créditos)",
+    description: "No deducibilidad de deterioros de: valores de renta fija, inmovilizado material, inversiones inmobiliarias, inmovilizado intangible (incluido fondo de comercio). Solo se mantiene la deducibilidad de deterioros de existencias y de créditos por insolvencias. Para intangibles de vida útil indefinida y fondo de comercio: deducción máxima de 1/20 anual (1/100 transitorio para 2015). Supresión de coeficientes de corrección monetaria en transmisión de inmuebles.",
+    norma: "Ley 27/2014 (arts. 13, 15 LIS)",
+    component: "Deterioros, gastos no deducibles"
+  },
+  {
+    year: 2015, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2015: operaciones vinculadas — perímetro al 25%, simplificación documental",
+    description: "Restricción del perímetro de vinculación socio-sociedad: del 5% (1% cotizadas) al 25% de participación. Documentación simplificada para entidades con cifra de negocios <45M€. Nuevo art. 18 LIS. Limitación adicional de gastos financieros por adquisición de participaciones intragrupo (art. 16.5 LIS).",
+    norma: "Ley 27/2014 (arts. 16, 18 LIS)",
+    component: "Operaciones vinculadas, gastos financieros"
+  },
+  {
+    year: 2015, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "Régimen ERD: reserva de nivelación",
+    description: "Mantenimiento del tipo reducido del 25% para primeros 300.000€ de BI (cifra de negocios <10M€). Creación de la reserva de nivelación: reducción de hasta 10% de la BI (máximo 1M€) para compensar futuras pérdidas en 5 años. Nueva deducción por inversión en elementos nuevos del inmovilizado material para ERD (similar a antigua deducción por inversión de beneficios del art. 37 TRLIS).",
+    norma: "Ley 27/2014",
+    component: "Régimen ERD, reserva de nivelación"
+  },
+
+  // ===================== 2015 — IP (from Manual Renta y Patrimonio 2015) =====================
+  {
+    year: 2015, tax: "IP", scope: "Nacional", region: "Nacional",
+    title: "Prórroga del Impuesto sobre el Patrimonio para 2015",
+    description: "Prórroga de la vigencia del IP. Mínimo exento estatal: 700.000€. Vivienda habitual exenta hasta 300.000€. Obligación de declarar si cuota a ingresar o si valor de bienes >2.000.000€. Novedad: los no residentes de UE/EEE pueden aplicar la normativa de la CCAA donde radique el mayor valor de sus bienes.",
+    norma: "Ley 36/2014 (PGE 2015)",
+    component: "Vigencia, mínimo exento, no residentes UE"
+  },
+  {
+    year: 2015, tax: "IP", scope: "Autonómico", region: "Comunidad de Madrid",
+    title: "Madrid: bonificación del 100% en IP",
+    description: "Bonificación del 100% de la cuota íntegra del Impuesto sobre el Patrimonio. IP de facto inexistente para residentes en Madrid.",
+    norma: "DL 1/2010 (Texto Refundido Madrid)",
+    component: "Bonificación cuota"
+  },
+  {
+    year: 2015, tax: "IP", scope: "Autonómico", region: "La Rioja",
+    title: "La Rioja: bonificación del 50% en IP",
+    description: "Bonificación general del 50% de la cuota del Impuesto sobre el Patrimonio.",
+    norma: "Ley de medidas La Rioja",
+    component: "Bonificación cuota"
+  },
+  {
+    year: 2015, tax: "IP", scope: "Autonómico", region: "Aragón",
+    title: "Aragón: mínimo exento de 500.000€ en IP",
+    description: "Aragón fija su mínimo exento autonómico en 500.000€, inferior al estatal de 700.000€.",
+    norma: "DL 1/2005 (Texto Refundido Aragón)",
+    component: "Mínimo exento"
+  },
+  {
+    year: 2015, tax: "IP", scope: "Autonómico", region: "Cataluña",
+    title: "Cataluña: mínimo exento de 500.000€ y tarifa propia con tipo máximo 2,75%",
+    description: "Cataluña fija mínimo exento en 500.000€ y aplica tarifa propia con tipo marginal máximo del 2,75% para patrimonios >10,7M€, la más alta de España. Bonificaciones específicas para patrimonios protegidos de discapacitados y propiedades forestales.",
+    norma: "Ley 5/2012 (Cataluña)",
+    component: "Mínimo exento, tarifa IP"
+  },
+  {
+    year: 2015, tax: "IP", scope: "Autonómico", region: "Extremadura",
+    title: "Extremadura: mínimos exentos superiores para personas con discapacidad",
+    description: "Extremadura aprueba mínimos exentos superiores a 700.000€ para contribuyentes con discapacidad física, psíquica o sensorial.",
+    norma: "DL 1/2013 (Texto Refundido Extremadura)",
+    component: "Mínimo exento discapacidad"
+  },
+  {
+    year: 2015, tax: "IP", scope: "Autonómico", region: "Varias CCAA",
+    title: "Escalas autonómicas propias del IP: 7 CCAA con tarifa diferenciada",
+    description: "En 2015, Andalucía, Asturias, Cataluña, Illes Balears, Extremadura, Galicia y Murcia tienen escalas propias del IP diferentes a la estatal. Cantabria tiene escala propia idéntica a la estatal. El resto aplica la tarifa estatal (tipo máximo 2,5%).",
+    norma: "Diversas leyes autonómicas",
+    component: "Escalas autonómicas IP"
+  },
+
+  // ===================== 2015 — ISD =====================
+  {
+    year: 2015, tax: "ISD", scope: "Autonómico", region: "Comunidad de Madrid",
+    title: "Madrid: bonificación del 99% en sucesiones y donaciones (Grupos I y II)",
+    description: "Bonificación del 99% de la cuota tributaria para adquisiciones mortis causa e inter vivos entre cónyuges, ascendientes y descendientes (Grupos I y II).",
+    norma: "DL 1/2010 (Texto Refundido Madrid)",
+    component: "Bonificación cuota ISD"
+  },
+  {
+    year: 2015, tax: "ISD", scope: "Autonómico", region: "Andalucía",
+    title: "Andalucía: mejora de reducciones en ISD para Grupo II",
+    description: "Reducción de la base imponible para adquisiciones mortis causa por cónyuges, ascendientes y descendientes: hasta 175.000€ por heredero.",
+    norma: "DL 1/2009 (Texto Refundido Andalucía)",
+    component: "Reducción base imponible"
+  },
+
+  // ===================== 2015 — Deducciones autonómicas IRPF (from Manual) =====================
+  {
+    year: 2015, tax: "IRPF", scope: "Autonómico", region: "Cataluña",
+    title: "Cataluña: tarifa autonómica con tipo marginal máximo del 25,5%",
+    description: "Escala autonómica con tipo máximo del 25,5% (sobre BI >175.000€), tipo combinado máximo del 49%. Deducciones propias: intereses por préstamos máster/doctorado, inversión en entidades nuevas, acciones en mercado alternativo bursátil, donaciones a entidades de lengua catalana, I+D+i, medio ambiente.",
+    norma: "Ley 2/2014 (Cataluña)",
+    component: "Tarifa autonómica, deducciones propias"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Autonómico", region: "Comunitat Valenciana",
+    title: "Valencia: tarifa y amplio catálogo de deducciones autonómicas",
+    description: "Escala autonómica con tipo máximo del 23,48%. Extenso catálogo de deducciones: nacimiento/adopción, familia numerosa, discapacidad, labores no remuneradas en el hogar, guardería menores de 3 años, adquisición primera vivienda jóvenes, arrendamiento vivienda, obras de conservación/mejora, donaciones al patrimonio cultural valenciano.",
+    norma: "Ley 13/1997 (Valencia, modificada)",
+    component: "Tarifa autonómica, deducciones propias"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Autonómico", region: "Extremadura",
+    title: "Extremadura: nueva escala con tipo máximo del 25% y deducciones",
+    description: "Nueva escala autonómica de 9 tramos con tipo marginal máximo del 25% (BI >120.200€). Deducciones propias: trabajo dependiente (75€ para rentas <12.000€), partos múltiples, acogimiento de menores, cuidado de familiares discapacitados, adquisición vivienda jóvenes (3%, o 5% en municipios <3.000 hab.), material escolar (15€).",
+    norma: "Ley 1/2015 (Extremadura)",
+    component: "Tarifa autonómica, deducciones propias"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Autonómico", region: "Illes Balears",
+    title: "Illes Balears: mínimos personales y familiares propios para gravamen autonómico",
+    description: "Baleares es la única CCAA que en 2015 aprueba importes propios de los mínimos del contribuyente, por descendientes y por discapacidad a efectos del cálculo del gravamen autonómico. Deducciones propias: discapacidad, inversiones de mejora de sostenibilidad de vivienda, donaciones I+D, libros de texto, seguros de salud, idiomas extraescolares.",
+    norma: "DL 1/2014 (Illes Balears)",
+    component: "Mínimos propios, deducciones propias"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Autonómico", region: "Castilla y León",
+    title: "Castilla y León: mínimos propios coincidentes con estatales",
+    description: "Castilla y León aprueba mínimos del contribuyente, descendientes, ascendientes y discapacidad coincidentes con los estatales. Deducciones propias: familia numerosa, nacimiento/adopción, paternidad, cuidado hijos <4 años, cuotas SS empleados hogar, adquisición vivienda jóvenes núcleos rurales, donaciones patrimonio histórico-artístico, fomento I+D+i y emprendimiento.",
+    norma: "DL 1/2013 (Castilla y León)",
+    component: "Mínimos propios, deducciones propias"
+  },
+  {
+    year: 2015, tax: "IRPF", scope: "Autonómico", region: "Comunidad de Madrid",
+    title: "Madrid: nuevos mínimos por descendientes y deducciones propias",
+    description: "Madrid aprueba nuevos importes del mínimo por descendientes para el gravamen autonómico. Deducciones propias: nacimiento/adopción, adopción internacional, acogimiento familiar, familia con ingresos reducidos, gastos educativos, adquisición acciones entidades nuevas, autoempleo jóvenes, inversiones en mercado alternativo bursátil, alquiler vivienda jóvenes.",
+    norma: "DL 1/2010 (Texto Refundido Madrid)",
+    component: "Mínimos propios, deducciones propias"
+  },
+
+  // ===================== 2016 — IRPF Nacional (from Manual Renta 2016 AEAT) =====================
+  {
+    year: 2016, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Segunda fase de la reforma: nuevas escalas estatal y del ahorro",
+    description: "Entran en vigor las nuevas escalas definitivas previstas en la Ley 26/2014. Tarifa estatal general: tipo mínimo 9,5% (BI hasta 12.450€), máximo estatal 22,5% (BI >60.000€). Tipo combinado mínimo: 19%, máximo: 45% (estatal+autonómico supletoria). Tarifa del ahorro: 19% (hasta 6.000€), 21% (6.000–50.000€), 23% (>50.000€). Rebaja de 1pp en cada tramo respecto a 2015.",
+    norma: "Ley 26/2014 (segunda fase, vigente 2016)",
+    component: "Tarifa general estatal, tarifa del ahorro"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Cláusulas suelo: no sujeción de la devolución de intereses",
+    description: "No se integra en la BI del IRPF la devolución de cantidades por cláusulas suelo (acuerdos con entidades financieras, sentencias o laudos). Consecuencia: regularización de autoliquidaciones anteriores si las cantidades formaron parte de la base de deducción por inversión en vivienda habitual o de deducciones autonómicas, o fueron gasto deducible. Regularización sin intereses de demora ni recargos, solo para ejercicios no prescritos.",
+    norma: "RDL 1/2017 (con efectos 2016)",
+    component: "Cláusulas suelo, regularización"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Sociedades civiles con objeto mercantil: pasan a tributar por IS",
+    description: "A partir del 1 de enero de 2016, las sociedades civiles con personalidad jurídica y objeto mercantil dejan de tributar en régimen de atribución de rentas (IRPF) y pasan al Impuesto sobre Sociedades. Distribución de beneficios pre-2016 no se integra en BI del perceptor. Régimen transitorio especial de disolución y liquidación para las que no deseen tributar por IS. Reglas especiales para transmisión de participaciones por los socios.",
+    norma: "Ley 27/2014 (disposición transitoria 19ª)",
+    component: "Sociedades civiles, atribución de rentas"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Rendimientos del trabajo en especie: exención por seguro de enfermedad 1.500€ para discapacitados",
+    description: "Se incrementa el límite de exención de las primas de seguro de enfermedad pagadas por la empresa de 500€ a 1.500€ cuando el beneficiario sea persona con discapacidad. Igualmente se eleva a 1.500€ el gasto deducible en estimación directa por primas de seguro de enfermedad para personas con discapacidad.",
+    norma: "Ley 48/2015 (PGE 2016)",
+    component: "Rendimientos en especie, gastos deducibles"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Compensación cruzada en base del ahorro: del 10% al 15%",
+    description: "El porcentaje de compensación cruzada entre el saldo negativo de rendimientos del capital mobiliario y el positivo de ganancias patrimoniales (y viceversa) en la base del ahorro sube del 10% (2015) al 15%. Continuará subiendo al 20% (2017) y 25% (2018 en adelante).",
+    norma: "Disposición transitoria 8ª LIRPF",
+    component: "Integración y compensación base del ahorro"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Estimación objetiva (módulos): exclusión de actividades y elevación transitoria de magnitudes",
+    description: "Se excluyen del método de estimación objetiva las actividades de divisiones 3, 4 y 5 de las tarifas del IAE sujetas a retención del 1% en 2015. Elevación transitoria (2016-2017) de los umbrales excluyentes de volumen de rendimientos y compras. En transporte de mercancías, se reduce de 5 a 4 vehículos el máximo. Se mantienen la reducción general del 5% y la reducción del 20% para Lorca.",
+    norma: "Orden HAP/2430/2015; Ley 48/2015",
+    component: "Estimación objetiva (módulos)"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Amortización de intangibles: desaparece distinción vida útil definida/indefinida",
+    description: "Todos los inmovilizados intangibles pasan a ser amortizables según criterios de la LIS. Para aquellos cuya vida útil no pueda estimarse de manera fiable y para el fondo de comercio, el límite anual máximo de deducción es del 5% (1/20 de su importe).",
+    norma: "Ley 27/2014 (art. 12)",
+    component: "Amortización intangibles"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Exención por reinversión en empresas de nueva creación",
+    description: "A partir del 30 de septiembre de 2016 se puede aplicar la exención de las ganancias patrimoniales por transmisión de acciones/participaciones en empresas de nueva o reciente creación (por las que se practicó la deducción del art. 68.1 LIRPF) cuando el importe se reinvierta en otra entidad de nueva o reciente creación.",
+    norma: "Ley 26/2014 (art. 38.2 LIRPF)",
+    component: "Ganancias patrimoniales, reinversión startups"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Donativos: elevación de porcentajes de deducción con reiteración",
+    description: "Se elevan los porcentajes de deducción por donativos a entidades del mecenazgo (Ley 49/2002). Tipo base para los primeros 150€: 75% (antes 50%). Resto: 30% (35% si se reitera donación a misma entidad por importe igual o superior en 2 años anteriores). +5pp para actividades prioritarias de mecenazgo.",
+    norma: "Ley 49/2002 (modificada por Ley 26/2014)",
+    component: "Deducciones por donativos"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Renta Web sustituye al programa PADRE",
+    description: "Todos los contribuyentes pueden obtener su borrador de declaración (no solo los de rentas simples). Desaparece el Programa de Ayuda Renta (PADRE), sustituido por Renta Web. Se incorpora casilla específica para solicitar rectificación de autoliquidación (casilla 127).",
+    norma: "Orden HFP/255/2017",
+    component: "Gestión del impuesto"
+  },
+
+  // ===================== 2016 — IS (from Manual Sociedades 2016) =====================
+  {
+    year: 2016, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2016: tipo general baja al 25%, sociedades civiles como contribuyentes IS",
+    description: "Tipo general del IS baja del 28% al 25%, completando la Ley 27/2014. Entidades de nueva creación: 15%. Las sociedades civiles con personalidad jurídica y objeto mercantil pasan a ser contribuyentes del IS. Con la bajada al 25%, desaparece la ventaja del tipo reducido ERD; las principales ventajas ERD pasan a ser la reserva de nivelación y la libertad de amortización.",
+    norma: "Ley 27/2014 (segunda fase); DT 19ª LIS",
+    component: "Tipo general, ERD, sociedades civiles"
+  },
+  {
+    year: 2016, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2016: amortización intangibles unificada, patent box, DTAs, reversión deterioros",
+    description: "Desaparece la distinción entre intangibles de vida útil definida/indefinida: todos amortizables (fondo de comercio: máx. 5%/año). Modificación del patent box (art. 23 LIS): reducción del 60% de rentas de cesión de intangibles. Nuevas reglas de conversión de DTAs en crédito exigible (art. 130 LIS). Reversión obligatoria de deterioros de participaciones deducidos antes de 2013 (DT 16ª LIS).",
+    norma: "Ley 27/2014; RDL 3/2016",
+    component: "Intangibles, patent box, DTAs, deterioros"
+  },
+  {
+    year: 2016, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "RDL 3/2016: límites a BINs grandes empresas y pago fraccionado mínimo",
+    description: "Compensación de BINs limitada al 50% de BI para cifra de negocios ≥20M€, al 25% para ≥60M€. Pago fraccionado mínimo del 23% del resultado contable positivo para grandes empresas (>10M€). No deducibilidad de pérdidas de EP en el extranjero. Estas medidas se aplican a los ejercicios iniciados a partir de 2016.",
+    norma: "RDL 3/2016, de 2 de diciembre",
+    component: "BINs, pago fraccionado, EP extranjero"
+  },
+
+  // ===================== 2016 — IP (from Manual Patrimonio 2016) =====================
+  {
+    year: 2016, tax: "IP", scope: "Nacional", region: "Nacional",
+    title: "Prórroga del IP para 2016: sin cambios sustanciales",
+    description: "Se prorroga la vigencia del IP. Mínimo exento estatal: 700.000€. Vivienda habitual exenta hasta 300.000€. Obligación de declarar si cuota a ingresar o si valor de bienes >2.000.000€. Sin cambios en la tarifa estatal.",
+    norma: "Ley 48/2015 (PGE 2016)",
+    component: "Vigencia"
+  },
+  {
+    year: 2016, tax: "IP", scope: "Autonómico", region: "Aragón",
+    title: "Aragón: mínimo exento IP rebajado a 400.000€",
+    description: "Aragón rebaja su mínimo exento autonómico del IP de 500.000€ a 400.000€, el más bajo de España.",
+    norma: "Ley de medidas Aragón 2016",
+    component: "Mínimo exento"
+  },
+  {
+    year: 2016, tax: "IP", scope: "Autonómico", region: "Extremadura",
+    title: "Extremadura: mínimo exento general de 500.000€ con escalado por discapacidad",
+    description: "Extremadura fija el mínimo exento general en 500.000€ (antes 700.000€ estatal). Para personas con discapacidad: 600.000€, 700.000€ u 800.000€ según grado.",
+    norma: "DL 1/2013 (Extremadura, modificado)",
+    component: "Mínimo exento, discapacidad"
+  },
+  {
+    year: 2016, tax: "IP", scope: "Autonómico", region: "Comunitat Valenciana",
+    title: "Valencia: mínimo exento IP de 600.000€ y escala propia",
+    description: "La Comunitat Valenciana aprueba mínimo exento de 600.000€ (antes 700.000€ estatal) y escala propia del IP diferente de la estatal. Para discapacitados (psíquica ≥33% o física/sensorial ≥65%): mínimo exento de 1.000.000€. Valencia se suma a las CCAA con tarifa IP propia (ahora 8: Andalucía, Asturias, Cataluña, Baleares, Extremadura, Galicia, Murcia, Valencia).",
+    norma: "Ley 13/2016 (Valencia)",
+    component: "Mínimo exento, escala propia"
+  },
+  {
+    year: 2016, tax: "IP", scope: "Autonómico", region: "Comunidad de Madrid",
+    title: "Madrid: bonificación del 100% en IP (se mantiene)",
+    description: "Madrid mantiene la bonificación del 100% de la cuota del IP. La Rioja mantiene bonificación del 50%.",
+    norma: "DL 1/2010 (Madrid)",
+    component: "Bonificación cuota"
+  },
+
+  // ===================== 2016 — ISD =====================
+  {
+    year: 2016, tax: "ISD", scope: "Autonómico", region: "Galicia",
+    title: "Galicia: tarifa propia del ISD y nuevas reducciones",
+    description: "Galicia aprueba una tarifa propia para adquisiciones mortis causa con tipos reducidos. Ampliación de reducciones por parentesco para Grupos I y II, y reducción del 99% para explotaciones agrarias y empresas familiares.",
+    norma: "DL 1/2011 (Texto Refundido Galicia, mod. 2015)",
+    component: "Tarifa, reducciones"
+  },
+
+  // ===================== 2016 — IRPF Autonómico =====================
+  {
+    year: 2016, tax: "IRPF", scope: "Autonómico", region: "Andalucía",
+    title: "Andalucía: nuevos tramos autonómicos IRPF, tipo máximo 25,5%",
+    description: "Andalucía modifica su tarifa autonómica con tipo marginal máximo del 25,5%. Deducciones propias: ayudas familiares, adopción, discapacidad, vivienda protegida, jóvenes, alquiler, acciones en startups, defensa jurídica laboral, donaciones ecológicas e I+D.",
+    norma: "Ley 10/2015 (Andalucía)",
+    component: "Tarifa autonómica, deducciones propias"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Autonómico", region: "Aragón",
+    title: "Aragón: tipo marginal máximo del 25%, deducción por inversión en economía social",
+    description: "Tipo marginal máximo autonómico del 25% (combinado: 47,5%). Nueva deducción por inversión en entidades de economía social. Se mantienen deducciones por nacimiento, discapacidad, guardería, libros de texto, material escolar, seguros de salud.",
+    norma: "Ley de medidas Aragón 2016",
+    component: "Tarifa autonómica, deducciones"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Autonómico", region: "Illes Balears",
+    title: "Baleares: nueva deducción por arrendamiento de vivienda a colectivos desfavorecidos",
+    description: "Se añade deducción por arrendamiento de vivienda habitual a favor de determinados colectivos. Se mantienen mínimos propios y deducciones de 2015.",
+    norma: "Ley medidas Baleares 2016",
+    component: "Deducciones propias"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Autonómico", region: "Principado de Asturias",
+    title: "Asturias: deducciones ampliadas para vivienda con discapacidad",
+    description: "Asturias amplía la deducción por adecuación de vivienda habitual a personas con discapacidad, incluyendo cónyuges, ascendientes y descendientes convivientes. Se mantienen deducciones por acogimiento, adopción, familias numerosas, monoparentales, guardería, material escolar.",
+    norma: "Ley de medidas Asturias 2016",
+    component: "Deducciones propias"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Autonómico", region: "La Rioja",
+    title: "La Rioja: nuevas deducciones por vivienda (jóvenes, rural, rehabilitación, discapacidad)",
+    description: "La Rioja introduce deducciones por adquisición/construcción de vivienda habitual para jóvenes, segunda vivienda en medio rural, rehabilitación de vivienda habitual, y rehabilitación para personas con discapacidad. También nueva deducción por fomento del autoempleo.",
+    norma: "Ley de medidas La Rioja 2016",
+    component: "Deducciones propias"
+  },
+  {
+    year: 2016, tax: "IRPF", scope: "Autonómico", region: "Región de Murcia",
+    title: "Murcia: nuevas deducciones por material escolar y donativos culturales/deportivos",
+    description: "Murcia introduce deducción por gastos de material escolar y libros de texto, y amplía los donativos deducibles a la protección del patrimonio cultural y promoción de actividades culturales y deportivas.",
+    norma: "Ley de medidas Murcia 2016",
+    component: "Deducciones propias"
+  },
+
+  // ===================== 2017 — IRPF Nacional (from Manual Renta 2017 AEAT) =====================
+  {
+    year: 2017, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Tarifa estatal sin cambios; año de estabilidad normativa",
+    description: "La tarifa estatal y la del ahorro se mantienen en los niveles de 2016 (tipos combinados 19%-45% general, 19%-23% ahorro). Sin nuevas deducciones estatales estructurales. Se mantiene el régimen de cláusulas suelo (no sujeción de devoluciones, regularización sin intereses de demora).",
+    norma: "—",
+    component: "Tarifa general (sin cambios)"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Transmisión de derechos de suscripción: tributación como ganancia patrimonial",
+    description: "Se unifica el tratamiento fiscal de la transmisión de derechos de suscripción preferente, tanto de valores cotizados como no cotizados: a partir de 2017, el importe obtenido es ganancia patrimonial (antes reducía el valor de adquisición). Sujeto a retención del 19%. Obligados a retener: entidad depositaria o intermediario financiero. Norma transitoria: del valor de adquisición se deduce lo obtenido por derechos transmitidos hasta 31/12/2016 (salvo lo ya tributado).",
+    norma: "Ley 26/2014 (art. 37.1.a LIRPF, vigente 2017)",
+    component: "Ganancias patrimoniales, derechos de suscripción"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Compensación cruzada en base del ahorro: del 15% al 20%",
+    description: "El porcentaje de compensación cruzada entre rendimientos de capital mobiliario y ganancias/pérdidas patrimoniales en la base del ahorro sube al 20% (fue 10% en 2015, 15% en 2016). Aplicable también a saldos negativos pendientes de 2015 y 2016.",
+    norma: "Disposición transitoria 8ª LIRPF",
+    component: "Integración y compensación base del ahorro"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Estimación objetiva: se aplican los nuevos límites excluyentes de la DT 32ª",
+    description: "Límites excluyentes para 2017: 250.000€ de rendimientos íntegros (conjunto de actividades, excepto agrícolas/ganaderas/forestales), 125.000€ para operaciones con factura a empresarios, 250.000€ de compras (excluido inmovilizado). Reducción general del 5% y 20% para Lorca se mantienen. Reducción estructural de índices de rendimiento neto para cría/guarda/engorde de ganado.",
+    norma: "Orden HFP/1823/2016; DT 32ª LIRPF",
+    component: "Estimación objetiva (módulos)"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Mínimo por descendientes: extensión a guarda y custodia judicial",
+    description: "Se modifica el Reglamento del IRPF para asimilar a descendientes a los menores cuya guarda y custodia haya sido atribuida a un tercero por resolución judicial (por violencia de género u otros motivos). El guardador/custodio puede aplicar el mínimo por descendientes.",
+    norma: "RD 1074/2017 (mod. art. 61 RIRPF)",
+    component: "Mínimo por descendientes"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Gastos de formación financiados por terceros: no son retribución en especie",
+    description: "Se aclara que los gastos de estudio para capacitación o reciclaje del personal financiados por empresas distintas del empleador (que comercialicen productos para los que se requiera formación) no constituyen retribución en especie para el trabajador.",
+    norma: "RD 1074/2017 (mod. art. 44 RIRPF)",
+    component: "Rendimientos del trabajo en especie"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Deducciones por producciones cinematográficas y audiovisuales: incremento",
+    description: "Se elevan los porcentajes: producciones españolas de largometrajes/series: 25% (primer millón) + 20% (resto). Producciones extranjeras: 20% (antes 15%), con límite de 3M€ por producción y 100.000€ por persona creativa. Espectáculos en vivo: límite del 80% de gastos junto con subvenciones. Producciones transfronterizas: límite del 60% del coste; nuevos realizadores con presupuesto <1M€: 70%.",
+    norma: "Ley 27/2014 (art. 36 LIS, modificado)",
+    component: "Deducciones por inversión empresarial"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Rectificación de autoliquidaciones: consolidación del procedimiento simplificado",
+    description: "Se consolida en el nuevo art. 67 bis del RIRPF la posibilidad de solicitar la rectificación de autoliquidaciones usando el propio modelo de declaración, con especialidades: el acuerdo estimatorio no tiene efecto de cierre a ulteriores comprobaciones; si solo procede devolución sin intereses, se entiende notificado por la transferencia bancaria (sin liquidación provisional expresa).",
+    norma: "RD 1074/2017 (nuevo art. 67 bis RIRPF)",
+    component: "Gestión del impuesto"
+  },
+
+  // ===================== 2017 — IS (from Manual Sociedades 2017) =====================
+  {
+    year: 2017, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2017: plena aplicación de las limitaciones RDL 3/2016",
+    description: "Plena aplicación en la declaración IS 2017 de las medidas del RDL 3/2016: compensación de BINs limitada al 50% (cifra negocios ≥20M€) o 25% (≥60M€). Reversión obligatoria de deterioros de participaciones pre-2013 (mínimo 1/5 anual). Pago fraccionado mínimo del 23% del resultado contable para grandes empresas.",
+    norma: "RDL 3/2016, de 2 de diciembre",
+    component: "BINs, deterioros, pago fraccionado"
+  },
+  {
+    year: 2017, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2017: exención art. 21 LIS — nuevas restricciones y adaptación SOCIMI",
+    description: "La exención por dividendos/plusvalías de participaciones (art. 21 LIS) incorpora nuevas restricciones derivadas del RDL 3/2016: interacción con la reversión de deterioros de la DT 16ª, y adaptación de la Ley 11/2009 (SOCIMI) a las modificaciones de la exención. Régimen de diferimiento de rentas negativas intragrupo cuando el adquirente es entidad del mismo grupo de sociedades.",
+    norma: "Ley 27/2014 (art. 21 LIS, mod. RDL 3/2016)",
+    component: "Exención participaciones, SOCIMI, rentas intragrupo"
+  },
+  {
+    year: 2017, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2017: incremento deducciones por producciones cinematográficas y audiovisuales",
+    description: "Producciones españolas de largometrajes/series: 25% (primer millón) + 20% (resto). Producciones extranjeras: 20%, límite 3M€ por producción, 100.000€ por persona creativa. Espectáculos en vivo: límite del 80% de gastos junto con subvenciones. Producciones transfronterizas: límite 60% del coste; nuevos realizadores con presupuesto <1M€: 70%.",
+    norma: "Ley 27/2014 (art. 36 LIS, modificado)",
+    component: "Deducciones cine/audiovisual"
+  },
+
+  // ===================== 2017 — IP (from Manual Patrimonio 2017) =====================
+  {
+    year: 2017, tax: "IP", scope: "Nacional", region: "Nacional",
+    title: "Prórroga del IP para 2017; Cantabria se suma a las escalas propias",
+    description: "Nueva prórroga del IP. Mínimos exentos autonómicos: Aragón 400.000€, Cataluña 500.000€, Extremadura 500.000€ (escalado por discapacidad), Valencia 600.000€ (1M€ para discapacitados). Resto: 700.000€ estatal. Ahora 9 CCAA con escala propia diferente de la estatal: se suma Cantabria a Andalucía, Asturias, Cataluña, Baleares, Extremadura, Galicia, Murcia y Valencia.",
+    norma: "PGE 2017",
+    component: "Vigencia, mínimos exentos, escalas autonómicas"
+  },
+  {
+    year: 2017, tax: "IP", scope: "Autonómico", region: "Comunidad de Madrid",
+    title: "Madrid y La Rioja mantienen bonificaciones en IP",
+    description: "Madrid mantiene bonificación del 100% (IP inexistente). La Rioja mantiene bonificación del 50%.",
+    norma: "DL 1/2010 (Madrid); Ley medidas La Rioja",
+    component: "Bonificaciones cuota"
+  },
+  {
+    year: 2017, tax: "IP", scope: "Autonómico", region: "Cataluña",
+    title: "Cataluña: tipo marginal máximo IP del 2,75% (se mantiene)",
+    description: "Cataluña mantiene su tarifa propia con tipo marginal del 2,75% para patrimonios >10,7M€ y mínimo exento de 500.000€, la más gravosa de España.",
+    norma: "Ley 5/2017 (Cataluña)",
+    component: "Tarifa IP"
+  },
+
+  // ===================== 2017 — ISD =====================
+  {
+    year: 2017, tax: "ISD", scope: "Autonómico", region: "Canarias",
+    title: "Canarias: bonificación del 99,9% en ISD (Grupos I y II)",
+    description: "Canarias introduce bonificación del 99,9% en la cuota del ISD para adquisiciones mortis causa entre familiares directos (cónyuges, ascendientes, descendientes).",
+    norma: "Ley de medidas Canarias 2016 (vigente 2017)",
+    component: "Bonificación cuota ISD"
+  },
+  {
+    year: 2017, tax: "ISD", scope: "Autonómico", region: "Región de Murcia",
+    title: "Murcia: bonificación del 99% en sucesiones (Grupos I y II)",
+    description: "Murcia amplía la bonificación en la cuota del ISD al 99% para adquisiciones mortis causa por cónyuges, ascendientes y descendientes.",
+    norma: "Ley de medidas Murcia 2017",
+    component: "Bonificación cuota ISD"
+  },
+
+  // ===================== 2017 — IRPF Autonómico =====================
+  {
+    year: 2017, tax: "IRPF", scope: "Autonómico", region: "Illes Balears",
+    title: "Baleares: nuevas deducciones por arrendamiento (arrendador + traslado laboral)",
+    description: "Nuevas deducciones: por arrendamiento de inmuebles destinados a vivienda (deducción del arrendador), y por arrendamiento derivado de traslado temporal de residencia por motivos laborales. Se añade deducción para cursar estudios de educación superior fuera de la isla.",
+    norma: "Ley medidas Baleares 2017",
+    component: "Deducciones propias"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Autonómico", region: "Canarias",
+    title: "Canarias: amplio paquete de nuevas deducciones",
+    description: "Nuevas deducciones: acogimiento de menores, familias monoparentales, familiares dependientes con discapacidad, gastos de estudios en educación infantil/primaria/ESO/bachillerato/FP, rehabilitación energética de vivienda habitual, donaciones culturales/deportivas/investigación, gastos de enfermedad.",
+    norma: "Ley de medidas Canarias 2017",
+    component: "Deducciones propias"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Autonómico", region: "Cantabria",
+    title: "Cantabria: ampliación de donativos a asociaciones de discapacidad",
+    description: "Se amplía la deducción por donativos a asociaciones que persigan entre sus fines el apoyo a personas con discapacidad.",
+    norma: "Ley de medidas Cantabria 2017",
+    component: "Deducciones propias"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Autonómico", region: "Castilla y León",
+    title: "Castilla y León: nueva deducción por rehabilitación para alquiler en núcleos rurales",
+    description: "Nueva deducción por inversión en rehabilitación de viviendas destinadas a alquiler en núcleos rurales.",
+    norma: "Ley de medidas CyL 2017",
+    component: "Deducciones propias"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Autonómico", region: "Extremadura",
+    title: "Extremadura: tipo marginal máximo del 25% (se mantiene)",
+    description: "Extremadura mantiene su escala de 9 tramos con tipo máximo del 25%. Deducciones: trabajo dependiente, partos múltiples, acogimiento menores, discapacidad familiar, vivienda jóvenes, alquiler <36 años, material escolar, acciones en startups.",
+    norma: "DL 1/2013 (Extremadura)",
+    component: "Tarifa autonómica, deducciones"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Autonómico", region: "La Rioja",
+    title: "La Rioja: nuevas deducciones por nacimiento, guardería en pequeños municipios, y vivienda rural",
+    description: "Nuevas deducciones: por nacimiento y adopción de hijos, por gastos en escuelas infantiles/personal de cuidado en municipios pequeños, por acogimiento de menores, y por adquisición/rehabilitación de vivienda habitual en pequeños municipios.",
+    norma: "Ley de medidas La Rioja 2017",
+    component: "Deducciones propias"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Autonómico", region: "Comunitat Valenciana",
+    title: "Valencia: nuevas deducciones por autoconsumo energético y abonos culturales",
+    description: "Nuevas deducciones: por instalaciones de autoconsumo de energía eléctrica o energías renovables en vivienda habitual, y por cantidades destinadas a abonos culturales. Se diferencia entre obras de conservación/mejora de períodos anteriores y del período corriente.",
+    norma: "Ley 13/2016 (Valencia)",
+    component: "Deducciones propias"
+  },
+  {
+    year: 2017, tax: "IRPF", scope: "Autonómico", region: "Región de Murcia",
+    title: "Murcia: nueva deducción por donativos a investigación biosanitaria",
+    description: "Se añade deducción por donativos destinados a la investigación biosanitaria, junto con las ya existentes por patrimonio cultural y actividades culturales/deportivas.",
+    norma: "Ley de medidas Murcia 2017",
+    component: "Deducciones propias"
+  },
+
+  // ===================== 2018 — IRPF Nacional (from Manual Renta 2018 AEAT) =====================
+  {
+    year: 2018, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Exención de prestaciones por maternidad y paternidad (STS 3/10/2018)",
+    description: "Tras la Sentencia del Tribunal Supremo 1462/2018, el RDL 27/2018 declara exentas las prestaciones por maternidad/paternidad de la Seguridad Social, de mutualidades alternativas de autónomos (con límite de la prestación máxima SS), y la retribución de empleados públicos durante permisos por parto/adopción/paternidad. Aplicable a ejercicios anteriores no prescritos.",
+    norma: "RDL 27/2018, de 28 de diciembre",
+    component: "Exenciones (art. 7.h LIRPF)"
+  },
+  {
+    year: 2018, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Incremento de la deducción por maternidad: +1.000€ por guardería",
+    description: "La deducción por maternidad se puede incrementar hasta en 1.000€ adicionales cuando el contribuyente haya satisfecho gastos de custodia del hijo <3 años en guarderías o centros de educación infantil autorizados. No se puede solicitar abono anticipado de este incremento; solo se aplica en la declaración.",
+    norma: "Ley 6/2018 (PGE 2018)",
+    component: "Deducción por maternidad"
+  },
+  {
+    year: 2018, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Nueva deducción por cónyuge con discapacidad + incremento familia numerosa",
+    description: "Nueva deducción de 1.200€/año por cónyuge no separado legalmente con discapacidad (sin rentas >8.000€). Incremento adicional de la deducción por familia numerosa: cantidad adicional por cada hijo que exceda del mínimo exigido para la categoría general o especial. Aplicación desde agosto 2018 (entrada en vigor PGE).",
+    norma: "Ley 6/2018 (PGE 2018, vigente desde 5/7/2018)",
+    component: "Deducciones familiares cuota diferencial"
+  },
+  {
+    year: 2018, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Umbral de obligación de declarar: sube a 12.643€ (segundo pagador)",
+    description: "El límite de rendimientos del trabajo que excluye de la obligación de declarar (con 2+ pagadores, etc.) sube de 12.000€ a 12.643€ para contribuyentes cuyo impuesto se devengue desde 5/7/2018. Para 2019 subirá a 14.000€. Se incluyen las ganancias patrimoniales por ayudas públicas dentro del límite conjunto de 1.000€.",
+    norma: "Ley 6/2018 (PGE 2018)",
+    component: "Obligación de declarar"
+  },
+  {
+    year: 2018, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Becas exentas: elevación de límites",
+    description: "Se incrementan los límites exentos de becas: estudios reglados hasta 2º ciclo: de 3.000 a 6.000€ (sin transporte/alojamiento), de 15.000 a 18.000€ (con), de 18.000 a 21.000€ (extranjero). Tercer ciclo: de 18.000 a 21.000€ (general), de 21.600 a 24.600€ (extranjero).",
+    norma: "Ley 6/2018 (PGE 2018)",
+    component: "Exenciones, becas"
+  },
+  {
+    year: 2018, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Autónomos: gastos de manutención y suministros de vivienda deducibles",
+    description: "Se regulan expresamente como gastos deducibles para autónomos en estimación directa: gastos de manutención (con límites de dietas: 26,67€/día sin pernocta, 53,34€ con pernocta; doble en extranjero; pago electrónico obligatorio). Suministros de vivienda afecta: deducibles al 30% de la proporción de m² afectos sobre total.",
+    norma: "Ley 6/2017 (Reformas Urgentes Trabajo Autónomo)",
+    component: "Actividades económicas, gastos deducibles"
+  },
+  {
+    year: 2018, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Compensación cruzada base del ahorro: al 25% definitivo",
+    description: "El porcentaje de compensación cruzada entre rendimientos del capital mobiliario y ganancias/pérdidas patrimoniales en la base del ahorro alcanza su nivel definitivo del 25% (fue 10% en 2015, 15% en 2016, 20% en 2017).",
+    norma: "Art. 49 LIRPF",
+    component: "Integración y compensación base del ahorro"
+  },
+  {
+    year: 2018, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Alquileres turísticos: no aplica reducción del 60%, nuevo modelo 179",
+    description: "Se aclara que los alquileres turísticos (cesión de uso de viviendas con fines turísticos) no tienen derecho a la reducción del 60% del rendimiento neto por arrendamiento de vivienda, al no satisfacer necesidad permanente de vivienda. Nuevo modelo informativo trimestral 179.",
+    norma: "RD 1070/2017 (mod. RGAT)",
+    component: "Rendimientos capital inmobiliario"
+  },
+  {
+    year: 2018, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Deducción por inversión en startups: del 20% al 30%, base hasta 60.000€",
+    description: "Se incrementa la deducción por inversión en empresas de nueva o reciente creación: porcentaje del 20% al 30%, base máxima de 50.000€ a 60.000€. Deducción máxima potencial: 18.000€ (antes 10.000€).",
+    norma: "Ley 6/2018 (PGE 2018)",
+    component: "Deducción inversión startups"
+  },
+  {
+    year: 2018, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Deducción por rentas en Ceuta o Melilla: del 50% al 60%",
+    description: "Se incrementa del 50% al 60% el porcentaje de deducción por rentas obtenidas en Ceuta o Melilla, tanto para residentes como no residentes en dichos territorios.",
+    norma: "Ley 6/2018 (PGE 2018)",
+    component: "Deducción Ceuta/Melilla"
+  },
+  {
+    year: 2018, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Nueva deducción para unidades familiares UE/EEE",
+    description: "Nueva deducción para contribuyentes integrantes de una unidad familiar con un miembro residente en otro Estado UE/EEE, que no pueden presentar declaración conjunta. Equipara su cuota a la que tendrían si todos fueran residentes en España.",
+    norma: "Ley 6/2018 (PGE 2018, art. 81 bis LIRPF)",
+    component: "Deducción unidades familiares UE/EEE"
+  },
+  {
+    year: 2018, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Vales de comida: exención sube de 9 a 11€/día",
+    description: "La cuantía diaria exenta de las fórmulas indirectas de prestación del servicio de comedor (vales de comida, tarjetas restaurante) se eleva de 9 a 11€ diarios.",
+    norma: "Ley 6/2018 (PGE 2018)",
+    component: "Rendimientos en especie"
+  },
+  {
+    year: 2018, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Desaparece la presentación de la declaración en papel",
+    description: "Ya no es posible obtener la declaración en papel impreso generado a través de Renta Web. Toda la presentación es electrónica.",
+    norma: "Orden HAC/277/2019",
+    component: "Gestión del impuesto"
+  },
+
+  // ===================== 2018 — IS (from Manual Sociedades 2018) =====================
+  {
+    year: 2018, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2018: nuevo gasto no deducible (pagos a jurisdicciones no cooperativas)",
+    description: "Se incorpora un nuevo supuesto de gasto no deducible en el art. 15 LIS: los gastos correspondientes a operaciones realizadas con personas o entidades residentes en jurisdicciones no cooperativas o que se paguen a través de paraísos fiscales, salvo que se pruebe que responden a operación efectiva.",
+    norma: "Ley 6/2018 (PGE 2018)",
+    component: "Gastos no deducibles"
+  },
+  {
+    year: 2018, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2018: reforma del patent box hacia enfoque Nexus (OCDE)",
+    description: "Modificación del régimen de reducción de rentas procedentes de determinados activos intangibles (patent box, art. 23 LIS) para adaptarlo al enfoque Nexus de la OCDE (Acción 5 BEPS). La reducción se vincula a los gastos incurridos por el contribuyente en la creación del activo. Régimen transitorio para activos generados antes de 29/6/2016.",
+    norma: "Ley 6/2018 (PGE 2018, mod. art. 23 LIS)",
+    component: "Patent box, Nexus"
+  },
+  {
+    year: 2018, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2018: modificaciones en pagos fraccionados y Canarias",
+    description: "Modificaciones en el régimen de pagos fraccionados (art. 40 LIS). Modificaciones en el Régimen Fiscal de Canarias: actualización de la reserva para inversiones en Canarias (art. 27 Ley 19/1994) y de las deducciones por inversiones en Canarias. Lanzamiento de 'Sociedades Web' para la cumplimentación del modelo 200.",
+    norma: "Ley 6/2018; Ley 8/2018",
+    component: "Pagos fraccionados, Canarias, gestión"
+  },
+
+  // ===================== 2018 — IP =====================
+  {
+    year: 2018, tax: "IP", scope: "Nacional", region: "Nacional",
+    title: "IP: vigencia indefinida desde 2018",
+    description: "La Ley 6/2018 (PGE 2018) elimina la necesidad de prorrogar anualmente el IP, suprimiendo la bonificación estatal del 100% que se venía prorrogando, lo que hace al impuesto indefinido. Sin cambios en mínimos exentos (700.000€ estatal) ni tarifa.",
+    norma: "Ley 6/2018 (PGE 2018)",
+    component: "Vigencia indefinida"
+  },
+
+  // ===================== 2018 — ISD =====================
+  {
+    year: 2018, tax: "ISD", scope: "Autonómico", region: "Cantabria",
+    title: "Cantabria: bonificación del 100% en ISD (Grupos I y II)",
+    description: "Cantabria introduce bonificación del 100% de la cuota del ISD para adquisiciones mortis causa entre familiares directos.",
+    norma: "Ley de Cantabria 10/2017",
+    component: "Bonificación cuota ISD"
+  },
+
+  // ===================== 2018 — IRPF Autonómico =====================
+  {
+    year: 2018, tax: "IRPF", scope: "Autonómico", region: "Comunitat Valenciana",
+    title: "Valencia: rebaja de tipos en tramos inferiores",
+    description: "Valencia rebaja los tipos de los tramos autonómicos inferiores, beneficiando a rentas bajas y medias. El tipo mínimo autonómico baja al 10%.",
+    norma: "Ley 21/2017 (Valencia)",
+    component: "Tarifa autonómica"
+  },
+  {
+    year: 2018, tax: "IRPF", scope: "Autonómico", region: "La Rioja",
+    title: "La Rioja: mínimo propio por discapacidad de descendientes",
+    description: "La Rioja fija importes propios del mínimo por discapacidad de descendientes para el cálculo del gravamen autonómico.",
+    norma: "Ley de medidas La Rioja 2018",
+    component: "Mínimos propios"
+  },
+
+  // ===================== 2019 — IRPF Nacional (from Manual Renta 2019 AEAT) =====================
+  {
+    year: 2019, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Umbral de obligación de declarar: sube definitivamente a 14.000€",
+    description: "El límite de rendimientos del trabajo que excluye de la obligación de declarar (con 2+ pagadores, pensiones compensatorias, pagador sin obligación de retener, etc.) se eleva definitivamente a 14.000€. Para el pagador único: se mantiene en 22.000€.",
+    norma: "Ley 6/2018 (vigencia plena 2019)",
+    component: "Obligación de declarar"
+  },
+  {
+    year: 2019, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Reducción por rendimientos del trabajo: ampliación a rentas hasta 16.825€",
+    description: "Se aumenta tanto la cuantía máxima de la reducción (hasta 5.565€) como el umbral de rendimientos netos que permite aplicarla (hasta 16.825€, antes 14.450€). Contribuyentes con rendimientos ≤13.115€: reducción de 5.565€. Entre 13.115€ y 16.825€: reducción decreciente.",
+    norma: "Ley 6/2018 (art. 20 LIRPF, vigencia 2019)",
+    component: "Reducción rendimientos del trabajo"
+  },
+  {
+    year: 2019, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "PIAS y rentas vitalicias por reinversión (>65 años): nuevos requisitos",
+    description: "Para contratos de seguro celebrados después del 1/4/2019 que instrumenten PIAS o rentas vitalicias por reinversión (exención art. 38.3), se exigen nuevos requisitos cuando incorporen mecanismos de reversión, períodos ciertos o contraseguros por fallecimiento. No afecta a contratos anteriores a esa fecha.",
+    norma: "RD 115/2019",
+    component: "PIAS, rentas vitalicias"
+  },
+  {
+    year: 2019, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Régimen transitorio de prestaciones de PP en forma de capital: plazo vencido para contingencias ≤2010",
+    description: "En 2019 ya no es posible aplicar el régimen transitorio de reducción del 40% a prestaciones en forma de capital derivadas de planes de pensiones, mutualidades y PPA por contingencias acaecidas en 2010 o anteriores.",
+    norma: "DT 12ª LIRPF",
+    component: "Planes de pensiones"
+  },
+  {
+    year: 2019, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Retención sobre propiedad intelectual (no autor): del 19% al 15%",
+    description: "Se reduce del 19% al 15% el tipo de retención aplicable a los rendimientos del capital mobiliario procedentes de la propiedad intelectual cuando el contribuyente no sea el autor.",
+    norma: "RD 115/2019",
+    component: "Retenciones capital mobiliario"
+  },
+  {
+    year: 2019, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Supresión del contrato de apoyo a emprendedores: fin de la deducción por creación de empleo",
+    description: "El RDL 28/2018 suprime desde 1/1/2019 el contrato de trabajo por tiempo indefinido de apoyo a emprendedores (art. 4 Ley 3/2012). Las deducciones por creación de empleo del art. 37 LIS solo se aplican a contratos celebrados antes del 1/1/2019.",
+    norma: "RDL 28/2018",
+    component: "Deducciones por creación de empleo"
+  },
+  {
+    year: 2019, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Obligaciones registrales: obligación de llevar libros registro aunque se lleve contabilidad",
+    description: "Desde 1/1/2019, todos los contribuyentes con actividades económicas están obligados a llevar los libros registro del IRPF, aun cuando lleven contabilidad ajustada al Código de Comercio. Excepción: actividades empresariales en estimación directa normal.",
+    norma: "RD 115/2019 (mod. art. 68 RIRPF)",
+    component: "Obligaciones formales"
+  },
+  {
+    year: 2019, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Loterías exentas hasta 20.000€",
+    description: "El importe exento del gravamen especial sobre premios de loterías y apuestas sube a 20.000€ (fue 2.500€ hasta julio 2018, 10.000€ desde julio 2018).",
+    norma: "DT 33ª LIRPF",
+    component: "Gravamen especial loterías"
+  },
+
+  // ===================== 2019 — IS (from Manual Sociedades 2019) =====================
+  {
+    year: 2019, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2019: nuevo gasto no deducible, supresión contrato emprendedores",
+    description: "Nuevo supuesto de gasto no deducible (art. 15 LIS, modificado): gastos derivados de la extinción de la relación laboral cuando excedan los importes obligatorios. Las deducciones por creación de empleo (art. 37 LIS) solo aplican a contratos de apoyo a emprendedores celebrados antes del 1/1/2019 (contrato suprimido por RDL 28/2018).",
+    norma: "RDL 28/2018; Ley 6/2018",
+    component: "Gastos no deducibles, empleo"
+  },
+  {
+    year: 2019, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2019: modificaciones en Régimen Fiscal de Canarias",
+    description: "Ley 8/2018 introduce modificaciones en la reserva para inversiones en Canarias (art. 27 Ley 19/1994): nuevas posibilidades de materialización. Se elevan los límites de gastos de la deducción por inversiones en producciones cinematográficas en Canarias. Se incrementan los límites de deducción en islas de La Palma, La Gomera y El Hierro. Nuevo art. 94 bis: beneficios fiscales por creación de empleo en Canarias (+30%).",
+    norma: "Ley 8/2018 (mod. Ley 19/1994)",
+    component: "Régimen fiscal Canarias"
+  },
+
+  // ===================== 2019 — ISD y IP Autonómico =====================
+  {
+    year: 2019, tax: "ISD", scope: "Autonómico", region: "Andalucía",
+    title: "Andalucía: bonificación del 99% en ISD (Grupos I y II)",
+    description: "Tras el cambio de gobierno, Andalucía aprueba bonificación del 99% de la cuota del ISD para cónyuges, ascendientes y descendientes. Cambio drástico respecto al régimen anterior, uno de los más gravosos.",
+    norma: "DL 1/2019, de 9 de abril (Andalucía)",
+    component: "Bonificación cuota ISD"
+  },
+  {
+    year: 2019, tax: "IRPF", scope: "Autonómico", region: "Andalucía",
+    title: "Andalucía: rebaja de la tarifa autonómica IRPF (0,5pp en todos los tramos)",
+    description: "Rebaja de medio punto en todos los tramos de la tarifa autonómica. Tipo marginal máximo baja del 25,5% al 24,9%.",
+    norma: "DL 1/2019 (Andalucía)",
+    component: "Tarifa autonómica"
+  },
+  {
+    year: 2019, tax: "IP", scope: "Autonómico", region: "Andalucía",
+    title: "Andalucía: bonificación del 100% en IP",
+    description: "Andalucía introduce bonificación del 100% de la cuota del IP, sumándose a Madrid como la segunda CCAA donde el IP es inexistente.",
+    norma: "DL 1/2019 (Andalucía)",
+    component: "Bonificación cuota IP"
+  },
+  {
+    year: 2019, tax: "ISD", scope: "Autonómico", region: "Castilla y León",
+    title: "Castilla y León: bonificación del 99% en ISD (BI < 400.000€)",
+    description: "Castilla y León eleva la bonificación del ISD para Grupos I y II al 99% para bases imponibles inferiores a 400.000€.",
+    norma: "Ley de medidas CyL 2019",
+    component: "Bonificación cuota ISD"
+  },
+
+  // ===================== 2020 — IRPF Nacional (from Manual Renta 2020 AEAT) =====================
+  {
+    year: 2020, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Ingreso Mínimo Vital: exento pero obliga a declarar",
+    description: "La prestación del IMV (RDL 20/2020) está exenta del IRPF, con límite conjunto con otras ayudas de subsistencia de 1,5×IPREM. Pero los titulares del IMV y todos los miembros de su unidad de convivencia están obligados a presentar declaración del IRPF anualmente.",
+    norma: "RDL 39/2020 (mod. art. 7.y LIRPF)",
+    component: "Exenciones, obligación de declarar"
+  },
+  {
+    year: 2020, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "COVID-19: estimación objetiva — renuncia sin vinculación trienal, reducción de módulos",
+    description: "Se elimina la vinculación obligatoria de 3 años para la renuncia a módulos: los contribuyentes pudieron renunciar para 2020 (tributando en estimación directa) y revocar la renuncia para 2021. Medidas de cálculo: no se computan los días de estado de alarma en la determinación del rendimiento neto, reducción del 20% del rendimiento neto para actividades de hostelería/comercio/turismo, reducción general del 5% y del 20% para Lorca.",
+    norma: "RDL 15/2020; RDL 35/2020",
+    component: "Estimación objetiva COVID-19"
+  },
+  {
+    year: 2020, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "COVID-19: fraccionamiento extraordinario en 6 plazos para ERTEs",
+    description: "Fraccionamiento extraordinario del pago de la deuda tributaria del IRPF en 6 plazos mensuales (desde julio 2021) sin intereses de demora ni garantías, para beneficiarios de prestaciones vinculadas a ERTEs durante 2020.",
+    norma: "Orden HAC/320/2021",
+    component: "Gestión del impuesto COVID-19"
+  },
+  {
+    year: 2020, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Rendimientos del trabajo en especie: vales de comida válidos para teletrabajo",
+    description: "Se precisa que la exención de entregas en comedores/cantinas de empresa (incluidas fórmulas indirectas como vales de comida, hasta 11€/día) se aplica con independencia de que el servicio se preste en el local, previa recogida por el empleado, o mediante entrega en el centro de trabajo o en el lugar elegido para teletrabajo.",
+    norma: "RDL 35/2020 (mod. art. 42.3.a LIRPF)",
+    component: "Rendimientos en especie, teletrabajo"
+  },
+  {
+    year: 2020, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Capital inmobiliario: saldos de dudoso cobro — plazo reducido a 3 meses",
+    description: "Se reduce de 6 a 3 meses (ejercicios 2020 y 2021) el plazo para que las cantidades adeudadas por arrendatarios tengan consideración de saldo de dudoso cobro y sean deducibles como gasto del capital inmobiliario.",
+    norma: "RDL 35/2020 (art. 15)",
+    component: "Rendimientos capital inmobiliario"
+  },
+  {
+    year: 2020, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Deterioros de créditos por insolvencias: plazo reducido a 3 meses para ERD",
+    description: "Para contribuyentes con actividades económicas que sean ERD (art. 101 LIS), las pérdidas por deterioro de créditos por insolvencias son deducibles en 2020-2021 cuando hayan transcurrido 3 meses (en lugar de 6) desde el vencimiento de la obligación.",
+    norma: "RDL 35/2020 (art. 14)",
+    component: "Actividades económicas, deterioros"
+  },
+  {
+    year: 2020, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Ayudas para jóvenes agricultores: imputación por cuartas partes",
+    description: "Desde 1/1/2020, las ayudas públicas para la primera instalación de jóvenes agricultores (Marco Nacional de Desarrollo Rural) pueden imputarse por cuartas partes: en el ejercicio de obtención y los tres siguientes.",
+    norma: "Ley 6/2018 (vigencia 2020)",
+    component: "Imputación temporal"
+  },
+  {
+    year: 2020, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Loterías exentas hasta 40.000€",
+    description: "El importe exento del gravamen especial sobre premios de loterías y apuestas alcanza su nivel definitivo de 40.000€.",
+    norma: "DT 33ª LIRPF",
+    component: "Gravamen especial loterías"
+  },
+  {
+    year: 2020, tax: "IRPF", scope: "Nacional", region: "Nacional",
+    title: "Régimen transitorio planes de pensiones: vence para contingencias ≤2011",
+    description: "En 2020 ya no es posible aplicar el régimen transitorio de reducción del 40% a prestaciones en forma de capital de PP/mutualidades/PPA por contingencias acaecidas en 2011 o anteriores.",
+    norma: "DT 12ª LIRPF",
+    component: "Planes de pensiones"
+  },
+
+  // ===================== 2020 — IS (from Manual Sociedades 2020) =====================
+  {
+    year: 2020, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2020: exención por dividendos limitada al 95% (vigencia 2021)",
+    description: "PGE 2021 (Ley 11/2020, aprobada diciembre 2020): la exención por dividendos/plusvalías de participaciones (art. 21 LIS) pasa del 100% al 95%, tributación efectiva al 1,25%. Entrada en vigor: ejercicios iniciados a partir de 1/1/2021. Medidas COVID-19: opción de pagos fraccionados según BI (art. 40.3 LIS), flexibilización de BINs para PYMES.",
+    norma: "Ley 11/2020 (PGE 2021); RDL 15/2020",
+    component: "Exención participaciones, COVID-19"
+  },
+  {
+    year: 2020, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2020: deducción incrementada por innovación tecnológica en automoción",
+    description: "Para PYMES: deducción por innovación tecnológica en procesos de producción de la cadena de valor de la automoción incrementada en 38pp (tipo efectivo del 50%). Para grandes empresas: +3pp (tipo del 15%) si colaboran con PYMES. Límite: 7,5M€ por proyecto. Para proyectos iniciados desde 25/6/2020, períodos 2020-2021.",
+    norma: "RDL 23/2020 (art. 7); RDL 34/2020",
+    component: "Deducción innovación tecnológica automoción"
+  },
+  {
+    year: 2020, tax: "IS", scope: "Nacional", region: "Nacional",
+    title: "IS 2020: libertad de amortización movilidad eléctrica + cine COVID",
+    description: "Libertad de amortización para inversiones en elementos nuevos del inmovilizado material que impliquen sensorización, monitorización o sistemas de fabricación modulares en el sector de automoción, puestos a disposición entre 2/4/2020 y 30/6/2021, con mantenimiento de plantilla (máx. 500.000€). Deducción por producciones cinematográficas españolas incrementada al 30% (primer millón) + 25% (resto). Asimetrías híbridas: nuevo régimen anti-elusión.",
+    norma: "DA 16ª LIS (RDL 34/2020); RDL 17/2020",
+    component: "Amortización automoción, cine, asimetrías híbridas"
+  },
+
+  // ===================== 2020 — IP y ISD Autonómico =====================
+  {
+    year: 2020, tax: "IP", scope: "Autonómico", region: "Cataluña",
+    title: "Cataluña: tipo extraordinario del IP del 3,48% para grandes patrimonios",
+    description: "Cataluña incrementa el tipo marginal del IP al 3,48% para patrimonios netos >10,7M€, muy por encima de la tarifa estatal (máximo 2,5%). El más alto de España.",
+    norma: "DL 17/2020 (Cataluña)",
+    component: "Tarifa IP"
+  },
+  {
+    year: 2020, tax: "ISD", scope: "Autonómico", region: "Comunitat Valenciana",
+    title: "Valencia: bonificación del 50% en sucesiones (Grupos I y II)",
+    description: "Valencia introduce bonificación del 50% de la cuota del ISD para adquisiciones mortis causa por cónyuges, ascendientes y descendientes.",
+    norma: "Ley de medidas Valencia 2020",
+    component: "Bonificación cuota ISD"
+  },
+  {
+    year: 2020, tax: "ISD", scope: "Autonómico", region: "Galicia",
+    title: "Galicia: mejora de reducciones en ISD por parentesco",
+    description: "Reducciones ampliadas: hasta 1.000.000€ para descendientes <25 años (Grupo I) y hasta 400.000€ para Grupo II.",
+    norma: "Ley 7/2019 (Galicia, vigente 2020)",
+    component: "Reducciones por parentesco"
+  },
+
+  // ===================== 2020 — IRPF Autonómico =====================
+  {
+    year: 2020, tax: "IRPF", scope: "Autonómico", region: "Cataluña",
+    title: "Cataluña: tipo marginal máximo combinado del 48%",
+    description: "Cataluña mantiene su escala autonómica con tipo máximo del 25,5%, tipo combinado del 48%, el más alto de las CCAA de régimen común.",
+    norma: "Ley 5/2020 (Cataluña)",
+    component: "Tarifa autonómica"
+  },
+  {
+    year: 2020, tax: "IRPF", scope: "Autonómico", region: "Andalucía",
+    title: "Andalucía: segunda rebaja de la tarifa autonómica IRPF",
+    description: "Andalucía vuelve a rebajar su tarifa autonómica, con reducción de 0,5pp adicionales en todos los tramos respecto a 2019.",
+    norma: "DL 3/2020 (Andalucía)",
+    component: "Tarifa autonómica"
+  }
+];
+
+// ============================================================
+// APP LOGIC
+// ============================================================
+const YEARS = [2015, 2016, 2017, 2018, 2019, 2020];
+const TAXES = ["IRPF", "IP", "ISD", "IS"];
+const SCOPES = ["Nacional", "Autonómico"];
+
+let activeYears = new Set(YEARS);
+let activeTaxes = new Set(TAXES);
+let activeScopes = new Set(SCOPES);
+let searchQuery = "";
+
+function toggleSet(set, val, allVals) {
+  if (set.has(val)) {
+    set.delete(val);
+    if (set.size === 0) allVals.forEach(v => set.add(v)); // if none, select all
+  } else {
+    set.add(val);
+  }
+}
+
+function buildFilters() {
+  const container = document.getElementById("filters");
+  container.innerHTML = "";
+
+  // Year filter
+  const yearGroup = el("div", "filter-group");
+  yearGroup.appendChild(labelEl("Año"));
+  const yearChips = el("div", "filter-chips");
+  YEARS.forEach(y => {
+    const c = chip(String(y), activeYears.has(y), "");
+    c.onclick = () => { toggleSet(activeYears, y, YEARS); render(); };
+    yearChips.appendChild(c);
+  });
+  yearGroup.appendChild(yearChips);
+  container.appendChild(yearGroup);
+
+  // Tax filter
+  const taxGroup = el("div", "filter-group");
+  taxGroup.appendChild(labelEl("Impuesto"));
+  const taxChips = el("div", "filter-chips");
+  TAXES.forEach(t => {
+    const c = chip(t, activeTaxes.has(t), "chip-" + t.toLowerCase());
+    c.onclick = () => { toggleSet(activeTaxes, t, TAXES); render(); };
+    taxChips.appendChild(c);
+  });
+  taxGroup.appendChild(taxChips);
+  container.appendChild(taxGroup);
+
+  // Scope filter
+  const scopeGroup = el("div", "filter-group");
+  scopeGroup.appendChild(labelEl("Ámbito"));
+  const scopeChips = el("div", "filter-chips");
+  SCOPES.forEach(s => {
+    const c = chip(s, activeScopes.has(s), "");
+    c.onclick = () => { toggleSet(activeScopes, s, SCOPES); render(); };
+    scopeChips.appendChild(c);
+  });
+  scopeGroup.appendChild(scopeChips);
+  container.appendChild(scopeGroup);
+
+  // Search
+  const searchGroup = el("div", "search-box");
+  searchGroup.appendChild(labelEl("Buscar"));
+  const input = document.createElement("input");
+  input.className = "search-input";
+  input.type = "text";
+  input.placeholder = "p.ej. bonificación, tarifa, ERD…";
+  input.value = searchQuery;
+  input.oninput = (e) => { searchQuery = e.target.value; renderCards(); };
+  searchGroup.appendChild(input);
+  container.appendChild(searchGroup);
+}
+
+function el(tag, cls) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  return e;
+}
+
+function labelEl(text) {
+  const l = el("span", "filter-label");
+  l.textContent = text;
+  return l;
+}
+
+function chip(text, active, extraClass) {
+  const c = el("button", "chip" + (active ? " active" : "") + (extraClass ? " " + extraClass : ""));
+  c.textContent = text;
+  return c;
+}
+
+function getFiltered() {
+  let items = DATA.filter(d =>
+    activeYears.has(d.year) &&
+    activeTaxes.has(d.tax) &&
+    activeScopes.has(d.scope)
+  );
+  if (searchQuery.trim()) {
+    const q = searchQuery.toLowerCase();
+    items = items.filter(d =>
+      d.title.toLowerCase().includes(q) ||
+      d.description.toLowerCase().includes(q) ||
+      d.component.toLowerCase().includes(q) ||
+      d.region.toLowerCase().includes(q) ||
+      (d.norma && d.norma.toLowerCase().includes(q))
+    );
+  }
+  return items;
+}
+
+function renderCards() {
+  const grid = document.getElementById("card-grid");
+  const countEl = document.getElementById("results-count");
+  const items = getFiltered();
+  countEl.innerHTML = `<strong>${items.length}</strong> medida${items.length !== 1 ? "s" : ""} encontrada${items.length !== 1 ? "s" : ""}`;
+
+  if (items.length === 0) {
+    grid.innerHTML = `<div class="empty-state"><p>No se encontraron medidas con estos filtros.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = "";
+  items.forEach(d => {
+    const card = el("div", "card");
+
+    const top = el("div", "card-top");
+    const taxBadge = el("span", "badge badge-" + d.tax.toLowerCase());
+    taxBadge.textContent = d.tax;
+    top.appendChild(taxBadge);
+
+    const scopeBadge = el("span", "badge badge-scope badge-" + d.scope.toLowerCase());
+    scopeBadge.textContent = d.scope === "Autonómico" ? d.region : "Nacional";
+    top.appendChild(scopeBadge);
+
+    const yearSpan = el("span", "card-year");
+    yearSpan.textContent = d.year;
+    top.appendChild(yearSpan);
+
+    card.appendChild(top);
+
+    const title = el("h3", "card-title");
+    title.textContent = d.title;
+    card.appendChild(title);
+
+    const desc = el("p", "card-description");
+    desc.textContent = d.description;
+    card.appendChild(desc);
+
+    if (d.norma || d.component) {
+      const meta = el("div", "card-meta");
+      if (d.norma && d.norma !== "—") {
+        const normaEl = el("span", "meta-item");
+        normaEl.innerHTML = `<strong>Norma:</strong> ${d.norma}`;
+        meta.appendChild(normaEl);
+      }
+      if (d.component) {
+        const compEl = el("span", "meta-item");
+        compEl.innerHTML = `<strong>Componente:</strong> ${d.component}`;
+        meta.appendChild(compEl);
+      }
+      card.appendChild(meta);
+    }
+
+    grid.appendChild(card);
+  });
+}
+
+function render() {
+  buildFilters();
+  renderCards();
+}
+
+render();
+</script>
+</body>
+</html>
