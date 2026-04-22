@@ -1,4 +1,4 @@
-# Personal website for Alba Vazquez García
+# Personal website for Alba Vázquez García
 
 ## Overview
 
