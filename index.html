@@ -19,7 +19,7 @@
   <style>
     /* --- Base --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
- 
+
     body {
       font-family: Arial, Helvetica, sans-serif;
       font-size: 17px;
@@ -27,7 +27,7 @@
       color: #222;
       background: #fff;
     }
- 
+
     /* --- Navigation --- */
     nav {
       background: #4d0000;
@@ -36,7 +36,7 @@
       justify-content: flex-end;
       gap: 40px;
     }
- 
+
     nav a {
       color: #ccc;
       text-decoration: none;
@@ -44,60 +44,57 @@
       font-size: 18px;
       font-weight: bold;
     }
- 
+
     nav a:hover { color: #fff; }
- 
+
     /* --- Main container --- */
     .container {
       max-width: 860px;
       margin: 60px auto;
       padding: 0 30px;
     }
- 
+
     /* --- Profile section --- */
     .profile {
       display: flex;
       gap: 40px;
-      align-items: stretch;
+      align-items: flex-start;
     }
- 
+
     .profile-image {
-      flex: 0 0 auto;          /* column width follows the square image */
+      flex: 0 0 300px;         /* fixed-width column */
+      width: 300px;
     }
- 
+
     .profile-image img {
-      height: 100%;            /* match the row height (= text height) */
-      width: auto;
-      aspect-ratio: 1 / 1;     /* keep it square */
+      width: 100%;             /* fills the 300px column */
+      aspect-ratio: 1 / 1;     /* square, no distortion */
       object-fit: cover;
       object-position: center top;
       border-radius: 4px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.15);
       display: block;
     }
- 
+
     .profile-text {
-      flex: 1 1 0;
+      flex: 1 1 0;             /* takes the remaining width */
       min-width: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
- 
+
     .profile-text h1 {
       font-size: 28px;
       font-weight: normal;
       margin-bottom: 6px;
       color: #4d0000;
     }
- 
+
     .profile-text .subtitle {
       font-style: italic;
       color: #555;
       margin-bottom: 16px;
       font-size: 18px;
     }
- 
+
     .profile-text p {
       margin-bottom: 14px;
       color: #333;
@@ -106,18 +103,18 @@
       text-justify: inter-word;
       hyphens: auto;
     }
- 
+
     /* --- Links --- */
     a { color: #4d0000; text-decoration: none; }
     a:hover { text-decoration: underline; }
- 
+
     .links {
       margin-top: 20px;
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
     }
- 
+
     .links a {
       background: #4d0000;
       color: #fff;
@@ -127,9 +124,9 @@
       font-size: 14px;
       text-decoration: none;
     }
- 
+
     .links a:hover { background: #6d0000; }
- 
+
     /* --- Responsive --- */
    @media (max-width: 600px) {
   .profile { flex-direction: column; }
@@ -140,45 +137,53 @@
   </style>
 </head>
 <body>
- 
+
   <nav>
     <a href="index.html">Home</a>
     <a href="research.html">Research</a>
     <a href="teaching.html">Teaching</a>
   </nav>
- 
+
   <div class="container">
     <div class="profile">
- 
+
       <div class="profile-image">
         <img src="yo2025.jpg" alt="Alba Vazquez García">
       </div>
- 
+
       <div class="profile-text">
         <h1>Alba Vazquez García</h1>
         <p class="subtitle">PhD Candidate in Economics</p>
- 
+
         <p>
           I am a PhD candidate at the 
           <a href="https://www.parisschoolofeconomics.eu/en/">Paris School of Economics</a>, 
           supervised by <a href="https://www.parisschoolofeconomics.com/bozio-antoine/fr/">Antoine Bozio</a>.
         </p>
- 
+
         <p>
           My research focuses on public economics, using quasi-experimental methods and 
           administrative datasets. I am interested in studying the taxation of capital and labour, 
           and understanding how individuals and firms respond to different policies.
         </p>
- 
+
         <p> 
           Before starting my PhD, I completed a Master's degree in Public Policy and Development at the 
           <a href="https://www.parisschoolofeconomics.eu/en/">Paris School of Economics</a>, 
           and I hold Bachelor's degrees in Law and Economics from the 
           <a href="https://www.upf.edu/en/"> Pompeu Fabra University</a> in Spain.
         </p>
- 
+
         <p style="margin-top: 20px;"><strong>Email:</strong> <a href="mailto:alba.vazquezgarcia@psemail.eu">alba.vazquezgarcia@psemail.eu</a></p>
 
         <div class="links">
           <a href="https://drive.google.com/file/d/1bi8VwV6YOpxSOpofguvV4od2ZIcY3WzQ/view?usp=drive_link">CV</a>
         </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
